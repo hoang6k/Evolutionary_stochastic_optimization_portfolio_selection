@@ -1,5 +1,7 @@
 import numpy as np
 import random
+
+
 def var_fitness(df, exposures, z_score):
     percentage = df.pct_change()
 
