@@ -26,7 +26,6 @@ class Chromosome:
         return self._fitness
 
 
-
 class Population:
     def __init__(self, first_population: list = None):
         if first_population is None:
@@ -61,7 +60,35 @@ class Population:
                 new_children.append(Chromosome(new_weight))
         return new_children
 
-    def crossover(self, parents, alpha=None):
+    def crossover_2points(self, parents, alpha=None):
+        genes_number = len(parents[0]._weight)
+        children = []
+        for i in range(int(self._offspring_number / 2)):
+            if self.verbose > 1:
+                print('\t\t{}_th 2 childs'.format(i + 1))
+            _crossover = bool(np.random.rand(1) <= self._crossover_probability)
+            if _crossover:
+                index = np.random.randint(len(parents))
+                father = parents.pop(index)._weight
+                index = np.random.randint(len(parents))
+                mother = parents.pop(index)._weight
+                two_points = np.random.choice(np.arange(genes_number), size=2, replace=False)
+                two_points.sort()
+                cs_genes_father = father[two_points[0]:two_points[1] + 1]
+                cs_genes_mother = mother[two_points[0]:two_points[1] + 1]
+                cs_genes_father *= np.sum(cs_genes_mother) / np.sum(cs_genes_father)
+                cs_genes_mother *= np.sum(cs_genes_father) / np.sum(cs_genes_mother)
+                try:
+                    weight_1 = np.concatenate((father[:two_points[0]], cs_genes_mother, father[two_points[1] + 1:]))
+                    weight_2 = np.concatenate((mother[:two_points[0]], cs_genes_father, mother[two_points[1] + 1:]))
+                except IndexError:
+                    weight_1 = np.concatenate((father[:two_points[0]], cs_genes_mother))
+                    weight_2 = np.concatenate((mother[:two_points[0]], cs_genes_father))
+                children.append(Chromosome(weight_1))
+                children.append(Chromosome(weight_2))
+        return children
+
+    def crossover_1point(self, parents, alpha=None):
         children = []
         for i in range(int(self._offspring_number / 2)):
             if self.verbose > 1:
@@ -80,23 +107,19 @@ class Population:
                 children.append(child_2)
         return children
 
-    def roulette_wheel_selection(self, generation, k):
-        # for i in range(int(self._offspring_number / 2)):
-        #     if self.verbose:
-        #         print('\t\t{}_th 2 childs'.format(i + 1))
-        #     _crossover = bool(np.random.rand(1) <= self._crossover_probability)
-        #     if _crossover:
-        #         father = generation[self.roulette_wheel_selection(array=fitness)]
-        #         mother = generation[self.roulette_wheel_selection(array=fitness)]
-        #         child_1, child_2 = self.crossover(father, mother)
-        #         children.append(child_1)
-        #         children.append(child_2)
-        # print('Time of cross-over: {} seconds'.format(time() - start_time))
-        # children_fitness = np.max(np.asarray([chromo.calculate_fitness() for chromo in children]))
-        # print('\tCROSS-OVER fitness: {}'.format(children_fitness))
-        pass
+    def roulette_wheel_selection(self, generation, k=5):
+        fitness = np.asarray([chromo._fitness for chromo in generation])
+        # change probability distribution from min to max
+        fitness = 1 - fitness / np.sum(fitness)
+        fitness /= np.sum(fitness)
+        parents = []
+        for i in range(self._offspring_number):
+            chosen_indexes = np.random.choice(np.arange(len(fitness)), size=k, replace=False, p=fitness)
+            best_index = chosen_indexes[np.argmax(fitness[chosen_indexes])]
+            parents.append(copy.deepcopy(generation[best_index]))
+        return parents
 
-    def tournament_selection(self, generation, k, alpha):
+    def tournament_selection(self, generation, k):
         fitness = np.asarray([chromo._fitness for chromo in generation])
         parents = []
         for i in range(self._offspring_number):
@@ -132,15 +155,24 @@ class Population:
         parents = selection_switcher.get(
                     self._selection_method['type'], 
                     lambda: 'Invalid selection method')(
-                    generation,
-                    self._selection_method['k'],
-                    self._selection_method['alpha'])
+                        generation,
+                        self._selection_method['k']
+                    )
 
         # cross-over phase
-        if self.verbose > 0:
+        if self.verbose > 1:
             print('----CROSS-OVER PHASE')
             start_time = time()
-        children = self.crossover(parents)
+        crossover_switcher = {
+            '1point': self.crossover_1point,
+            '2points': self.crossover_2points
+        }
+        children = crossover_switcher.get(
+                    self._crossover_method['type'],
+                    lambda: 'Invalid crossover method')(
+                        parents,
+                        self._crossover_method['parameters']
+                    )
         best_fitness = np.min([chromo._fitness for chromo in children])
         if self.verbose > 0:
             if self.verbose > 1:
@@ -148,7 +180,7 @@ class Population:
             print('\tCROSS-OVER best fitness: {}'.format(best_fitness))
 
         # mutation phase
-        if self.verbose > 0:
+        if self.verbose > 1:
             print('****MUTATION PHASE')
             start_time = time()
         new_children = self.mutation(children)
@@ -176,6 +208,7 @@ class Population:
         print('Population size: ' + str(self._population_size))
         print('Offspring number: ' + str(self._offspring_number))
         print('Selection type: ' + self._selection_method['type'].capitalize())
+        print('Crossover method: ' + self._crossover_method['type'].capitalize())
         print('Crossover probability: ' + str(self._crossover_probability))
         print('Mutation probability: ' + str(self._mutation_probability))
         print('Mutation size: ' + str(self._mutation_size))
@@ -185,10 +218,13 @@ class Population:
 
     def generate_populations(self, config: dict, verbose=False):
         self._offspring_number = int(self._population_size * config['offspring_ratio'])
+        if self._offspring_number % 2 == 1:
+            self._offspring_number += 1
         self._crossover_probability = config['crossover_probability']
         self._selection_method = config['selection_method']
+        self._crossover_method = config['crossover_method']
         self._mutation_probability = config['mutation_probability']
-        self._mutation_size = config['mutation_size']
+        self._mutation_size = int(self._offspring_number * config['mutation_ratio'])
         self._chromosomes_replace = self._offspring_number
         self._generations_number = config['generations_number']
         self._stop_criterion_depth = config['stop_criterion_depth']
@@ -213,6 +249,7 @@ class Population:
                     print('\tFitness improved')
                 depth = 0
                 self._best_fitness = new_best_fitness
+        return self._best_fitness
 
 
     @staticmethod
@@ -225,21 +262,19 @@ class Population:
 
 
 if __name__ == '__main__':
-    config = {'population_size': 100, 'offspring_ratio': 0.5,
+    config = {'population_size': 200, 'offspring_ratio': 0.5,
                 'crossover_probability': 1.0,
-                'selection_method': {'type': 'tournament', 'k': 10, 'alpha': 0.4},
-                'mutation_probability': 1.0, 'mutation_size': 10,
+                'selection_method': {'type': 'roulette_wheel', 'k': 10},
+                'crossover_method': {'type': '2points', 'parameters': None},
+                'mutation_probability': 1.0, 'mutation_ratio': 0.1,
                 'generations_number': 500, 'stop_criterion_depth': 50}
-               
 
     path = 'data/data_concat.csv'
     df = pd.read_csv(path)
     genes_number = len(df.columns) - 1
     z_score = 1.0
 
-    population = Population.population_initialization(df, z_score, population_size=config['population_size'], \
+    population = Population.population_initialization(df, z_score,
+                                                        population_size=config['population_size'],
                                                         genes_number=genes_number)
     population.generate_populations(config=config, verbose=1)
-
-    pass
-
