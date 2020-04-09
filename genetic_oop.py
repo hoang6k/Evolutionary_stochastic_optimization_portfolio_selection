@@ -35,7 +35,8 @@ class Population:
         _fitness = [chromo._fitness for chromo in first_population]
         self._best_fitness = np.min(np.asarray(_fitness))
         self._all_best_fitness = [self._best_fitness]
-        self._generations_solution = first_population[np.argmin(_fitness)]
+        self._generations_solution = [first_population[np.argmin(_fitness)]]
+        self._best_solution = self._generations_solution[-1]
         self.verbose = False
     
     def mutation(self, children):
@@ -74,10 +75,10 @@ class Population:
                 mother = parents.pop(index)._weight
                 two_points = np.random.choice(np.arange(genes_number), size=2, replace=False)
                 two_points.sort()
-                cs_genes_father = father[two_points[0]:two_points[1] + 1]
-                cs_genes_mother = mother[two_points[0]:two_points[1] + 1]
-                cs_genes_father *= np.sum(cs_genes_mother) / np.sum(cs_genes_father)
-                cs_genes_mother *= np.sum(cs_genes_father) / np.sum(cs_genes_mother)
+                _cs_genes_father = father[two_points[0]:two_points[1] + 1]
+                _cs_genes_mother = mother[two_points[0]:two_points[1] + 1]
+                cs_genes_father = _cs_genes_father * np.sum(_cs_genes_mother) / np.sum(_cs_genes_father)
+                cs_genes_mother = _cs_genes_mother *  np.sum(_cs_genes_father) / np.sum(_cs_genes_mother)
                 try:
                     weight_1 = np.concatenate((father[:two_points[0]], cs_genes_mother, father[two_points[1] + 1:]))
                     weight_2 = np.concatenate((mother[:two_points[0]], cs_genes_father, mother[two_points[1] + 1:]))
@@ -201,7 +202,9 @@ class Population:
         new_generation_fitness = np.asarray([chromo._fitness for chromo in new_generation])
         self._generations.append(new_generation)
         self._all_best_fitness.append(np.min(new_generation_fitness))
-        self._generations_solution = new_generation[np.argmin(new_generation_fitness)]
+        self._generations_solution.append(new_generation[np.argmin(new_generation_fitness)])
+        if self._all_best_fitness[-1] < self._all_best_fitness[-2]:
+            self._best_solution = self._generations_solution[-1]
         return self._all_best_fitness[-1]
 
     def print(self):
@@ -244,12 +247,22 @@ class Population:
                     if self.verbose > 0:
                         print('**********STOP CRITERION DEPTH REACHED**********')
                     break
+            elif self._best_fitness - new_best_fitness < 1e-6:
+                depth += 1
+                if self.verbose > 0:
+                    print('\tFitness improved but less than 1e-6')
+                if self.verbose > 0:
+                    print('\tFitness improved a little for {} generations'.format(depth))
+                if depth > self._stop_criterion_depth:
+                    if self.verbose > 0:
+                        print('**********STOP CRITERION DEPTH REACHED**********')
+                    break
             else:
                 if self.verbose > 0:
                     print('\tFitness improved')
                 depth = 0
                 self._best_fitness = new_best_fitness
-        return self._best_fitness
+        return self._best_solution, self._best_fitness
 
 
     @staticmethod
@@ -277,4 +290,9 @@ if __name__ == '__main__':
     population = Population.population_initialization(df, z_score,
                                                         population_size=config['population_size'],
                                                         genes_number=genes_number)
-    population.generate_populations(config=config, verbose=1)
+    solution, fitness = population.generate_populations(config=config, verbose=1)
+
+    print(solution._weight)
+    solution = np.reshape(solution._weight, (1, genes_number))
+    result = pd.DataFrame(solution, columns=list(df))
+    result.to_csv('result_vn30.csv')
