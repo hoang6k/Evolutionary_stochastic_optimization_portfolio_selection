@@ -1,0 +1,1690 @@
+Population size: 200
+Offspring number: 100
+Selection type: Roulette_wheel
+Crossover method: 2points
+Crossover probability: 1.0
+Mutation probability: 1.0
+Mutation size: 10
+Max generations number: 500
+Stop criterion depth: 50
+
+Initial fitness: 25532.195332902163
+
+Iteration 1
+	CROSS-OVER best fitness: 25422.270092234787
+	MUTATION best fitness: 25422.270092234787
+Generation 1: fitness 25422.270092234787
+	Fitness improved
+
+Iteration 2
+	CROSS-OVER best fitness: 24706.08388264201
+	MUTATION best fitness: 24706.08388264201
+Generation 2: fitness 24706.08388264201
+	Fitness improved
+
+Iteration 3
+	CROSS-OVER best fitness: 24658.913271125766
+	MUTATION best fitness: 24658.913271125766
+Generation 3: fitness 24658.913271125766
+	Fitness improved
+
+Iteration 4
+	CROSS-OVER best fitness: 24394.34039650677
+	MUTATION best fitness: 24394.34039650677
+Generation 4: fitness 24394.34039650677
+	Fitness improved
+
+Iteration 5
+	CROSS-OVER best fitness: 23997.914316900846
+	MUTATION best fitness: 23997.914316900846
+Generation 5: fitness 23997.914316900846
+	Fitness improved
+
+Iteration 6
+	CROSS-OVER best fitness: 23559.840818206183
+	MUTATION best fitness: 23559.840818206183
+Generation 6: fitness 23559.840818206183
+	Fitness improved
+
+Iteration 7
+	CROSS-OVER best fitness: 23330.051504315248
+	MUTATION best fitness: 23330.051504315248
+Generation 7: fitness 23330.051504315248
+	Fitness improved
+
+Iteration 8
+	CROSS-OVER best fitness: 23330.051504315248
+	MUTATION best fitness: 23330.051504315248
+Generation 8: fitness 23330.051504315248
+	Fitness not improved for 1 generations
+
+Iteration 9
+	CROSS-OVER best fitness: 23264.987811773295
+	MUTATION best fitness: 23264.987811773295
+Generation 9: fitness 23264.987811773295
+	Fitness improved
+
+Iteration 10
+	CROSS-OVER best fitness: 23215.47234050036
+	MUTATION best fitness: 23215.47234050036
+Generation 10: fitness 23215.47234050036
+	Fitness improved
+
+Iteration 11
+	CROSS-OVER best fitness: 23178.801473721902
+	MUTATION best fitness: 23178.801473721902
+Generation 11: fitness 23178.801473721902
+	Fitness improved
+
+Iteration 12
+	CROSS-OVER best fitness: 23125.720392988693
+	MUTATION best fitness: 23125.720392988693
+Generation 12: fitness 23125.720392988693
+	Fitness improved
+
+Iteration 13
+	CROSS-OVER best fitness: 22960.47879802356
+	MUTATION best fitness: 22960.47879802356
+Generation 13: fitness 22960.47879802356
+	Fitness improved
+
+Iteration 14
+	CROSS-OVER best fitness: 22960.47879802356
+	MUTATION best fitness: 22960.47879802356
+Generation 14: fitness 22960.47879802356
+	Fitness not improved for 1 generations
+
+Iteration 15
+	CROSS-OVER best fitness: 22957.45736988288
+	MUTATION best fitness: 22960.47879802356
+Generation 15: fitness 22960.47879802356
+	Fitness not improved for 2 generations
+
+Iteration 16
+	CROSS-OVER best fitness: 22862.446002333396
+	MUTATION best fitness: 22862.446002333396
+Generation 16: fitness 22862.446002333396
+	Fitness improved
+
+Iteration 17
+	CROSS-OVER best fitness: 22819.374964949555
+	MUTATION best fitness: 22819.374964949555
+Generation 17: fitness 22819.374964949555
+	Fitness improved
+
+Iteration 18
+	CROSS-OVER best fitness: 22819.374964949555
+	MUTATION best fitness: 22819.374964949555
+Generation 18: fitness 22819.374964949555
+	Fitness not improved for 1 generations
+
+Iteration 19
+	CROSS-OVER best fitness: 22819.201192594875
+	MUTATION best fitness: 22819.201192594875
+Generation 19: fitness 22819.201192594875
+	Fitness improved
+
+Iteration 20
+	CROSS-OVER best fitness: 22801.658894215692
+	MUTATION best fitness: 22801.658894215692
+Generation 20: fitness 22801.658894215692
+	Fitness improved
+
+Iteration 21
+	CROSS-OVER best fitness: 22755.111390226557
+	MUTATION best fitness: 22755.111390226557
+Generation 21: fitness 22755.111390226557
+	Fitness improved
+
+Iteration 22
+	CROSS-OVER best fitness: 22755.291198916282
+	MUTATION best fitness: 22755.291198916282
+Generation 22: fitness 22755.111390226557
+	Fitness not improved for 1 generations
+
+Iteration 23
+	CROSS-OVER best fitness: 22755.111390226557
+	MUTATION best fitness: 22755.111390226557
+Generation 23: fitness 22755.111390226557
+	Fitness not improved for 2 generations
+
+Iteration 24
+	CROSS-OVER best fitness: 22740.65218303615
+	MUTATION best fitness: 22740.65218303615
+Generation 24: fitness 22740.65218303615
+	Fitness improved
+
+Iteration 25
+	CROSS-OVER best fitness: 22740.653199824912
+	MUTATION best fitness: 22740.653199824912
+Generation 25: fitness 22740.65218303615
+	Fitness not improved for 1 generations
+
+Iteration 26
+	CROSS-OVER best fitness: 22740.65218303614
+	MUTATION best fitness: 22740.65218303614
+Generation 26: fitness 22740.65218303614
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 2 generations
+
+Iteration 27
+	CROSS-OVER best fitness: 22739.745880105726
+	MUTATION best fitness: 22739.77586390997
+Generation 27: fitness 22739.77586390997
+	Fitness improved
+
+Iteration 28
+	CROSS-OVER best fitness: 22739.77572450969
+	MUTATION best fitness: 22739.77572450969
+Generation 28: fitness 22739.77572450969
+	Fitness improved
+
+Iteration 29
+	CROSS-OVER best fitness: 22739.6363448062
+	MUTATION best fitness: 22739.6363448062
+Generation 29: fitness 22739.6363448062
+	Fitness improved
+
+Iteration 30
+	CROSS-OVER best fitness: 22739.56408417806
+	MUTATION best fitness: 22739.56408417806
+Generation 30: fitness 22739.56408417806
+	Fitness improved
+
+Iteration 31
+	CROSS-OVER best fitness: 22738.96661359778
+	MUTATION best fitness: 22738.966853306592
+Generation 31: fitness 22738.966853306592
+	Fitness improved
+
+Iteration 32
+	CROSS-OVER best fitness: 22738.81569301419
+	MUTATION best fitness: 22738.81569301419
+Generation 32: fitness 22738.81569301419
+	Fitness improved
+
+Iteration 33
+	CROSS-OVER best fitness: 22738.64080127315
+	MUTATION best fitness: 22738.64080127315
+Generation 33: fitness 22738.64080127315
+	Fitness improved
+
+Iteration 34
+	CROSS-OVER best fitness: 22738.61006895729
+	MUTATION best fitness: 22738.61006895729
+Generation 34: fitness 22738.61006895729
+	Fitness improved
+
+Iteration 35
+	CROSS-OVER best fitness: 22738.267143055084
+	MUTATION best fitness: 22738.267143055084
+Generation 35: fitness 22738.267143055084
+	Fitness improved
+
+Iteration 36
+	CROSS-OVER best fitness: 22738.234695008086
+	MUTATION best fitness: 22738.267354564636
+Generation 36: fitness 22738.267143055084
+	Fitness not improved for 1 generations
+
+Iteration 37
+	CROSS-OVER best fitness: 22738.030844031502
+	MUTATION best fitness: 22738.030844031502
+Generation 37: fitness 22738.030844031502
+	Fitness improved
+
+Iteration 38
+	CROSS-OVER best fitness: 22737.85015018526
+	MUTATION best fitness: 22737.85015018526
+Generation 38: fitness 22737.85015018526
+	Fitness improved
+
+Iteration 39
+	CROSS-OVER best fitness: 22737.585847394927
+	MUTATION best fitness: 22737.585847394927
+Generation 39: fitness 22737.585847394927
+	Fitness improved
+
+Iteration 40
+	CROSS-OVER best fitness: 22737.587806866126
+	MUTATION best fitness: 22737.587806866126
+Generation 40: fitness 22737.585847394927
+	Fitness not improved for 1 generations
+
+Iteration 41
+	CROSS-OVER best fitness: 22737.506365146266
+	MUTATION best fitness: 22737.506365146266
+Generation 41: fitness 22737.506365146266
+	Fitness improved
+
+Iteration 42
+	CROSS-OVER best fitness: 22737.509077034298
+	MUTATION best fitness: 22737.509077034298
+Generation 42: fitness 22737.506365146266
+	Fitness not improved for 1 generations
+
+Iteration 43
+	CROSS-OVER best fitness: 22737.452035037208
+	MUTATION best fitness: 22737.452035037208
+Generation 43: fitness 22737.452035037208
+	Fitness improved
+
+Iteration 44
+	CROSS-OVER best fitness: 22737.4191255605
+	MUTATION best fitness: 22737.4191255605
+Generation 44: fitness 22737.4191255605
+	Fitness improved
+
+Iteration 45
+	CROSS-OVER best fitness: 22737.409735701367
+	MUTATION best fitness: 22737.409735701367
+Generation 45: fitness 22737.409735701367
+	Fitness improved
+
+Iteration 46
+	CROSS-OVER best fitness: 22737.40860352636
+	MUTATION best fitness: 22737.41138557156
+Generation 46: fitness 22737.409735701367
+	Fitness not improved for 1 generations
+
+Iteration 47
+	CROSS-OVER best fitness: 22737.39446590404
+	MUTATION best fitness: 22688.6714847659
+Generation 47: fitness 22688.6714847659
+	Fitness improved
+
+Iteration 48
+	CROSS-OVER best fitness: 22688.68151558995
+	MUTATION best fitness: 22688.68151558995
+Generation 48: fitness 22688.6714847659
+	Fitness not improved for 1 generations
+
+Iteration 49
+	CROSS-OVER best fitness: 22681.526863085437
+	MUTATION best fitness: 22681.526863085437
+Generation 49: fitness 22681.526863085437
+	Fitness improved
+
+Iteration 50
+	CROSS-OVER best fitness: 22681.49563784819
+	MUTATION best fitness: 22681.49563784819
+Generation 50: fitness 22681.49563784819
+	Fitness improved
+
+Iteration 51
+	CROSS-OVER best fitness: 22664.48726767028
+	MUTATION best fitness: 22664.48726767028
+Generation 51: fitness 22664.48726767028
+	Fitness improved
+
+Iteration 52
+	CROSS-OVER best fitness: 22644.411779988586
+	MUTATION best fitness: 22644.411779988586
+Generation 52: fitness 22644.411779988586
+	Fitness improved
+
+Iteration 53
+	CROSS-OVER best fitness: 22634.383204741524
+	MUTATION best fitness: 22634.383204741524
+Generation 53: fitness 22634.383204741524
+	Fitness improved
+
+Iteration 54
+	CROSS-OVER best fitness: 22630.24476233344
+	MUTATION best fitness: 22630.24476233344
+Generation 54: fitness 22630.24476233344
+	Fitness improved
+
+Iteration 55
+	CROSS-OVER best fitness: 22618.772837919274
+	MUTATION best fitness: 22618.772837919274
+Generation 55: fitness 22618.772837919274
+	Fitness improved
+
+Iteration 56
+	CROSS-OVER best fitness: 22603.58067543277
+	MUTATION best fitness: 22603.58067543277
+Generation 56: fitness 22603.58067543277
+	Fitness improved
+
+Iteration 57
+	CROSS-OVER best fitness: 22602.977088369393
+	MUTATION best fitness: 22602.977088369393
+Generation 57: fitness 22602.977088369393
+	Fitness improved
+
+Iteration 58
+	CROSS-OVER best fitness: 22600.397095404845
+	MUTATION best fitness: 22600.397095404845
+Generation 58: fitness 22600.397095404845
+	Fitness improved
+
+Iteration 59
+	CROSS-OVER best fitness: 22596.34280832431
+	MUTATION best fitness: 22596.34280832431
+Generation 59: fitness 22596.34280832431
+	Fitness improved
+
+Iteration 60
+	CROSS-OVER best fitness: 22593.114313791844
+	MUTATION best fitness: 22593.114313791844
+Generation 60: fitness 22593.114313791844
+	Fitness improved
+
+Iteration 61
+	CROSS-OVER best fitness: 22592.53593310561
+	MUTATION best fitness: 22592.53593310561
+Generation 61: fitness 22592.53593310561
+	Fitness improved
+
+Iteration 62
+	CROSS-OVER best fitness: 22591.136368488158
+	MUTATION best fitness: 22591.136368488158
+Generation 62: fitness 22591.136368488158
+	Fitness improved
+
+Iteration 63
+	CROSS-OVER best fitness: 22589.256903813526
+	MUTATION best fitness: 22589.256903813526
+Generation 63: fitness 22589.256903813526
+	Fitness improved
+
+Iteration 64
+	CROSS-OVER best fitness: 22586.750617112415
+	MUTATION best fitness: 22586.750617112415
+Generation 64: fitness 22586.750617112415
+	Fitness improved
+
+Iteration 65
+	CROSS-OVER best fitness: 22586.402015436175
+	MUTATION best fitness: 22586.402015436175
+Generation 65: fitness 22586.402015436175
+	Fitness improved
+
+Iteration 66
+	CROSS-OVER best fitness: 22586.309145269675
+	MUTATION best fitness: 22586.309145269675
+Generation 66: fitness 22586.309145269675
+	Fitness improved
+
+Iteration 67
+	CROSS-OVER best fitness: 22585.900974896314
+	MUTATION best fitness: 22585.900974896314
+Generation 67: fitness 22585.900974896314
+	Fitness improved
+
+Iteration 68
+	CROSS-OVER best fitness: 22585.71671635593
+	MUTATION best fitness: 22585.71671635593
+Generation 68: fitness 22585.71671635593
+	Fitness improved
+
+Iteration 69
+	CROSS-OVER best fitness: 22585.390384520033
+	MUTATION best fitness: 22585.390384520033
+Generation 69: fitness 22585.390384520033
+	Fitness improved
+
+Iteration 70
+	CROSS-OVER best fitness: 22585.132152671766
+	MUTATION best fitness: 22585.132152671766
+Generation 70: fitness 22585.132152671766
+	Fitness improved
+
+Iteration 71
+	CROSS-OVER best fitness: 22584.74448045613
+	MUTATION best fitness: 22584.74448045613
+Generation 71: fitness 22584.74448045613
+	Fitness improved
+
+Iteration 72
+	CROSS-OVER best fitness: 22584.823120831403
+	MUTATION best fitness: 22584.823120831403
+Generation 72: fitness 22584.74448045613
+	Fitness not improved for 1 generations
+
+Iteration 73
+	CROSS-OVER best fitness: 22584.68290921086
+	MUTATION best fitness: 22584.68290921086
+Generation 73: fitness 22584.68290921086
+	Fitness improved
+
+Iteration 74
+	CROSS-OVER best fitness: 22584.56350891131
+	MUTATION best fitness: 22584.56350891131
+Generation 74: fitness 22584.56350891131
+	Fitness improved
+
+Iteration 75
+	CROSS-OVER best fitness: 22584.47805235477
+	MUTATION best fitness: 22584.47805235477
+Generation 75: fitness 22584.47805235477
+	Fitness improved
+
+Iteration 76
+	CROSS-OVER best fitness: 22584.389217692285
+	MUTATION best fitness: 22584.403831908367
+Generation 76: fitness 22584.403831908367
+	Fitness improved
+
+Iteration 77
+	CROSS-OVER best fitness: 22584.235381984196
+	MUTATION best fitness: 22584.33355497644
+Generation 77: fitness 22584.33355497644
+	Fitness improved
+
+Iteration 78
+	CROSS-OVER best fitness: 22584.145684090745
+	MUTATION best fitness: 22584.145684090745
+Generation 78: fitness 22584.145684090745
+	Fitness improved
+
+Iteration 79
+	CROSS-OVER best fitness: 22584.056855382605
+	MUTATION best fitness: 22584.056855382605
+Generation 79: fitness 22584.056855382605
+	Fitness improved
+
+Iteration 80
+	CROSS-OVER best fitness: 22584.009289622947
+	MUTATION best fitness: 22584.009289622947
+Generation 80: fitness 22584.009289622947
+	Fitness improved
+
+Iteration 81
+	CROSS-OVER best fitness: 22583.903348399217
+	MUTATION best fitness: 22583.903348399217
+Generation 81: fitness 22583.903348399217
+	Fitness improved
+
+Iteration 82
+	CROSS-OVER best fitness: 22583.890835998274
+	MUTATION best fitness: 22583.890835998274
+Generation 82: fitness 22583.890835998274
+	Fitness improved
+
+Iteration 83
+	CROSS-OVER best fitness: 22583.86713178097
+	MUTATION best fitness: 22583.86713178097
+Generation 83: fitness 22583.86713178097
+	Fitness improved
+
+Iteration 84
+	CROSS-OVER best fitness: 22583.847090584888
+	MUTATION best fitness: 22583.847090584888
+Generation 84: fitness 22583.847090584888
+	Fitness improved
+
+Iteration 85
+	CROSS-OVER best fitness: 22583.826203760025
+	MUTATION best fitness: 22583.826203760025
+Generation 85: fitness 22583.826203760025
+	Fitness improved
+
+Iteration 86
+	CROSS-OVER best fitness: 22583.820870134434
+	MUTATION best fitness: 22583.820870134434
+Generation 86: fitness 22583.820870134434
+	Fitness improved
+
+Iteration 87
+	CROSS-OVER best fitness: 22583.81890697187
+	MUTATION best fitness: 22583.81890697187
+Generation 87: fitness 22583.81890697187
+	Fitness improved
+
+Iteration 88
+	CROSS-OVER best fitness: 22583.813101965407
+	MUTATION best fitness: 22583.813101965407
+Generation 88: fitness 22583.813101965407
+	Fitness improved
+
+Iteration 89
+	CROSS-OVER best fitness: 22583.81110724169
+	MUTATION best fitness: 22583.81110724169
+Generation 89: fitness 22583.81110724169
+	Fitness improved
+
+Iteration 90
+	CROSS-OVER best fitness: 22583.810000495057
+	MUTATION best fitness: 22583.810000495057
+Generation 90: fitness 22583.810000495057
+	Fitness improved
+
+Iteration 91
+	CROSS-OVER best fitness: 22583.80976092366
+	MUTATION best fitness: 22583.80976092366
+Generation 91: fitness 22583.80976092366
+	Fitness improved
+
+Iteration 92
+	CROSS-OVER best fitness: 22583.8087074178
+	MUTATION best fitness: 22583.80886936093
+Generation 92: fitness 22583.80886936093
+	Fitness improved
+
+Iteration 93
+	CROSS-OVER best fitness: 22583.808124097523
+	MUTATION best fitness: 22583.808124097523
+Generation 93: fitness 22583.808124097523
+	Fitness improved
+
+Iteration 94
+	CROSS-OVER best fitness: 22583.807930893272
+	MUTATION best fitness: 22583.807930893272
+Generation 94: fitness 22583.807930893272
+	Fitness improved
+
+Iteration 95
+	CROSS-OVER best fitness: 22583.80745024691
+	MUTATION best fitness: 22583.80745024691
+Generation 95: fitness 22583.80745024691
+	Fitness improved
+
+Iteration 96
+	CROSS-OVER best fitness: 22583.805934995817
+	MUTATION best fitness: 22583.805934995817
+Generation 96: fitness 22583.805934995817
+	Fitness improved
+
+Iteration 97
+	CROSS-OVER best fitness: 22583.805903666253
+	MUTATION best fitness: 22583.805903666253
+Generation 97: fitness 22583.805903666253
+	Fitness improved
+
+Iteration 98
+	CROSS-OVER best fitness: 22583.80519375175
+	MUTATION best fitness: 22583.80519375175
+Generation 98: fitness 22583.80519375175
+	Fitness improved
+
+Iteration 99
+	CROSS-OVER best fitness: 22583.805133458638
+	MUTATION best fitness: 22583.805133458638
+Generation 99: fitness 22583.805133458638
+	Fitness improved
+
+Iteration 100
+	CROSS-OVER best fitness: 22583.804591230863
+	MUTATION best fitness: 22583.804591230863
+Generation 100: fitness 22583.804591230863
+	Fitness improved
+
+Iteration 101
+	CROSS-OVER best fitness: 22583.80471175334
+	MUTATION best fitness: 22583.80471175334
+Generation 101: fitness 22583.804591230863
+	Fitness not improved for 1 generations
+
+Iteration 102
+	CROSS-OVER best fitness: 22583.8044794302
+	MUTATION best fitness: 22583.8044794302
+Generation 102: fitness 22583.8044794302
+	Fitness improved
+
+Iteration 103
+	CROSS-OVER best fitness: 22583.80426851154
+	MUTATION best fitness: 22583.80426851154
+Generation 103: fitness 22583.80426851154
+	Fitness improved
+
+Iteration 104
+	CROSS-OVER best fitness: 22583.80409363312
+	MUTATION best fitness: 22583.80409363312
+Generation 104: fitness 22583.80409363312
+	Fitness improved
+
+Iteration 105
+	CROSS-OVER best fitness: 22583.80403512466
+	MUTATION best fitness: 22583.80403512466
+Generation 105: fitness 22583.80403512466
+	Fitness improved
+
+Iteration 106
+	CROSS-OVER best fitness: 22583.804002796584
+	MUTATION best fitness: 22583.804002796584
+Generation 106: fitness 22583.804002796584
+	Fitness improved
+
+Iteration 107
+	CROSS-OVER best fitness: 22583.803924418324
+	MUTATION best fitness: 22583.803924418324
+Generation 107: fitness 22583.803924418324
+	Fitness improved
+
+Iteration 108
+	CROSS-OVER best fitness: 22583.80387509864
+	MUTATION best fitness: 22583.80387509864
+Generation 108: fitness 22583.80387509864
+	Fitness improved
+
+Iteration 109
+	CROSS-OVER best fitness: 22583.803868289804
+	MUTATION best fitness: 22583.803868289804
+Generation 109: fitness 22583.803868289804
+	Fitness improved
+
+Iteration 110
+	CROSS-OVER best fitness: 22583.803767995843
+	MUTATION best fitness: 22583.803767995843
+Generation 110: fitness 22583.803767995843
+	Fitness improved
+
+Iteration 111
+	CROSS-OVER best fitness: 22583.803753049757
+	MUTATION best fitness: 22583.803753049757
+Generation 111: fitness 22583.803753049757
+	Fitness improved
+
+Iteration 112
+	CROSS-OVER best fitness: 22583.803745183937
+	MUTATION best fitness: 22583.803745183937
+Generation 112: fitness 22583.803745183937
+	Fitness improved
+
+Iteration 113
+	CROSS-OVER best fitness: 22583.80371234307
+	MUTATION best fitness: 22583.80371234307
+Generation 113: fitness 22583.80371234307
+	Fitness improved
+
+Iteration 114
+	CROSS-OVER best fitness: 22583.80369075372
+	MUTATION best fitness: 22583.80369075372
+Generation 114: fitness 22583.80369075372
+	Fitness improved
+
+Iteration 115
+	CROSS-OVER best fitness: 22583.803635006196
+	MUTATION best fitness: 22583.803635006196
+Generation 115: fitness 22583.803635006196
+	Fitness improved
+
+Iteration 116
+	CROSS-OVER best fitness: 22583.80363389642
+	MUTATION best fitness: 22519.524459430333
+Generation 116: fitness 22519.524459430333
+	Fitness improved
+
+Iteration 117
+	CROSS-OVER best fitness: 22519.524459430333
+	MUTATION best fitness: 22519.524459430333
+Generation 117: fitness 22519.524459430333
+	Fitness not improved for 1 generations
+
+Iteration 118
+	CROSS-OVER best fitness: 22470.474877178647
+	MUTATION best fitness: 22470.474877178647
+Generation 118: fitness 22470.474877178647
+	Fitness improved
+
+Iteration 119
+	CROSS-OVER best fitness: 22467.07317031742
+	MUTATION best fitness: 22467.07317031742
+Generation 119: fitness 22467.07317031742
+	Fitness improved
+
+Iteration 120
+	CROSS-OVER best fitness: 22467.07317047335
+	MUTATION best fitness: 22467.07317047335
+Generation 120: fitness 22467.07317031742
+	Fitness not improved for 1 generations
+
+Iteration 121
+	CROSS-OVER best fitness: 22457.1812249434
+	MUTATION best fitness: 22457.1812249434
+Generation 121: fitness 22457.1812249434
+	Fitness improved
+
+Iteration 122
+	CROSS-OVER best fitness: 22456.64107977237
+	MUTATION best fitness: 22456.749268313804
+Generation 122: fitness 22456.749268313804
+	Fitness improved
+
+Iteration 123
+	CROSS-OVER best fitness: 22415.550173316682
+	MUTATION best fitness: 22415.550173316682
+Generation 123: fitness 22415.550173316682
+	Fitness improved
+
+Iteration 124
+	CROSS-OVER best fitness: 22411.97854144792
+	MUTATION best fitness: 22412.441962647445
+Generation 124: fitness 22412.441962647445
+	Fitness improved
+
+Iteration 125
+	CROSS-OVER best fitness: 22406.005491715456
+	MUTATION best fitness: 22406.005491715456
+Generation 125: fitness 22406.005491715456
+	Fitness improved
+
+Iteration 126
+	CROSS-OVER best fitness: 22392.610546303746
+	MUTATION best fitness: 22392.610546303746
+Generation 126: fitness 22392.610546303746
+	Fitness improved
+
+Iteration 127
+	CROSS-OVER best fitness: 22389.844923002092
+	MUTATION best fitness: 22389.844923002092
+Generation 127: fitness 22389.844923002092
+	Fitness improved
+
+Iteration 128
+	CROSS-OVER best fitness: 22387.2184095651
+	MUTATION best fitness: 22387.2184095651
+Generation 128: fitness 22387.2184095651
+	Fitness improved
+
+Iteration 129
+	CROSS-OVER best fitness: 22382.359009281074
+	MUTATION best fitness: 22382.359009281074
+Generation 129: fitness 22382.359009281074
+	Fitness improved
+
+Iteration 130
+	CROSS-OVER best fitness: 22382.231182497264
+	MUTATION best fitness: 22382.231182497264
+Generation 130: fitness 22382.231182497264
+	Fitness improved
+
+Iteration 131
+	CROSS-OVER best fitness: 22380.76549866339
+	MUTATION best fitness: 22380.76549866339
+Generation 131: fitness 22380.76549866339
+	Fitness improved
+
+Iteration 132
+	CROSS-OVER best fitness: 22373.86376695494
+	MUTATION best fitness: 22373.86376695494
+Generation 132: fitness 22373.86376695494
+	Fitness improved
+
+Iteration 133
+	CROSS-OVER best fitness: 22372.306423147787
+	MUTATION best fitness: 22372.306423147787
+Generation 133: fitness 22372.306423147787
+	Fitness improved
+
+Iteration 134
+	CROSS-OVER best fitness: 22373.215517224766
+	MUTATION best fitness: 22373.215517224766
+Generation 134: fitness 22372.306423147787
+	Fitness not improved for 1 generations
+
+Iteration 135
+	CROSS-OVER best fitness: 22369.4437237262
+	MUTATION best fitness: 22369.4437237262
+Generation 135: fitness 22369.4437237262
+	Fitness improved
+
+Iteration 136
+	CROSS-OVER best fitness: 22368.571078905974
+	MUTATION best fitness: 22369.28018183025
+Generation 136: fitness 22369.28018183025
+	Fitness improved
+
+Iteration 137
+	CROSS-OVER best fitness: 22367.661573665206
+	MUTATION best fitness: 22367.661573665206
+Generation 137: fitness 22367.661573665206
+	Fitness improved
+
+Iteration 138
+	CROSS-OVER best fitness: 22366.0160849781
+	MUTATION best fitness: 22366.0160849781
+Generation 138: fitness 22366.0160849781
+	Fitness improved
+
+Iteration 139
+	CROSS-OVER best fitness: 22364.593379032343
+	MUTATION best fitness: 22364.593379032343
+Generation 139: fitness 22364.593379032343
+	Fitness improved
+
+Iteration 140
+	CROSS-OVER best fitness: 22363.992301465358
+	MUTATION best fitness: 22363.992301465358
+Generation 140: fitness 22363.992301465358
+	Fitness improved
+
+Iteration 141
+	CROSS-OVER best fitness: 22363.923654536244
+	MUTATION best fitness: 22363.923654536244
+Generation 141: fitness 22363.923654536244
+	Fitness improved
+
+Iteration 142
+	CROSS-OVER best fitness: 22363.3146068645
+	MUTATION best fitness: 22363.3146068645
+Generation 142: fitness 22363.3146068645
+	Fitness improved
+
+Iteration 143
+	CROSS-OVER best fitness: 22363.238830659655
+	MUTATION best fitness: 22363.238830659655
+Generation 143: fitness 22363.238830659655
+	Fitness improved
+
+Iteration 144
+	CROSS-OVER best fitness: 22363.151906370065
+	MUTATION best fitness: 22363.151906370065
+Generation 144: fitness 22363.151906370065
+	Fitness improved
+
+Iteration 145
+	CROSS-OVER best fitness: 22363.196612761792
+	MUTATION best fitness: 22363.196612761792
+Generation 145: fitness 22363.151906370065
+	Fitness not improved for 1 generations
+
+Iteration 146
+	CROSS-OVER best fitness: 22363.070519690784
+	MUTATION best fitness: 22363.070519690784
+Generation 146: fitness 22363.070519690784
+	Fitness improved
+
+Iteration 147
+	CROSS-OVER best fitness: 22363.027855680037
+	MUTATION best fitness: 22363.027855680037
+Generation 147: fitness 22363.027855680037
+	Fitness improved
+
+Iteration 148
+	CROSS-OVER best fitness: 22362.524959513637
+	MUTATION best fitness: 22362.788496148994
+Generation 148: fitness 22362.788496148994
+	Fitness improved
+
+Iteration 149
+	CROSS-OVER best fitness: 22362.788496148994
+	MUTATION best fitness: 22362.788496148994
+Generation 149: fitness 22362.788496148994
+	Fitness not improved for 1 generations
+
+Iteration 150
+	CROSS-OVER best fitness: 22362.77353461903
+	MUTATION best fitness: 22362.77353461903
+Generation 150: fitness 22362.77353461903
+	Fitness improved
+
+Iteration 151
+	CROSS-OVER best fitness: 22362.77353461903
+	MUTATION best fitness: 22362.780319220874
+Generation 151: fitness 22362.77353461903
+	Fitness not improved for 1 generations
+
+Iteration 152
+	CROSS-OVER best fitness: 22362.745891149738
+	MUTATION best fitness: 22362.745891149738
+Generation 152: fitness 22362.745891149738
+	Fitness improved
+
+Iteration 153
+	CROSS-OVER best fitness: 22362.745891149738
+	MUTATION best fitness: 22362.745891149738
+Generation 153: fitness 22362.745891149738
+	Fitness not improved for 1 generations
+
+Iteration 154
+	CROSS-OVER best fitness: 22362.733830396362
+	MUTATION best fitness: 22362.733830396362
+Generation 154: fitness 22362.733830396362
+	Fitness improved
+
+Iteration 155
+	CROSS-OVER best fitness: 22362.72235524436
+	MUTATION best fitness: 22362.72235524436
+Generation 155: fitness 22362.72235524436
+	Fitness improved
+
+Iteration 156
+	CROSS-OVER best fitness: 22362.721836814184
+	MUTATION best fitness: 22362.721836814184
+Generation 156: fitness 22362.721836814184
+	Fitness improved
+
+Iteration 157
+	CROSS-OVER best fitness: 22362.71909179418
+	MUTATION best fitness: 22362.71909179418
+Generation 157: fitness 22362.71909179418
+	Fitness improved
+
+Iteration 158
+	CROSS-OVER best fitness: 22362.710496242347
+	MUTATION best fitness: 22362.710496242347
+Generation 158: fitness 22362.710496242347
+	Fitness improved
+
+Iteration 159
+	CROSS-OVER best fitness: 22362.710496242347
+	MUTATION best fitness: 22362.710496242347
+Generation 159: fitness 22362.710496242347
+	Fitness not improved for 1 generations
+
+Iteration 160
+	CROSS-OVER best fitness: 22362.70835559485
+	MUTATION best fitness: 22362.70835559485
+Generation 160: fitness 22362.70835559485
+	Fitness improved
+
+Iteration 161
+	CROSS-OVER best fitness: 22362.7082390135
+	MUTATION best fitness: 22362.7082390135
+Generation 161: fitness 22362.7082390135
+	Fitness improved
+
+Iteration 162
+	CROSS-OVER best fitness: 22362.707478990706
+	MUTATION best fitness: 22362.707478990706
+Generation 162: fitness 22362.707478990706
+	Fitness improved
+
+Iteration 163
+	CROSS-OVER best fitness: 22362.705418163434
+	MUTATION best fitness: 22362.705418163434
+Generation 163: fitness 22362.705418163434
+	Fitness improved
+
+Iteration 164
+	CROSS-OVER best fitness: 22362.704504010275
+	MUTATION best fitness: 22362.704504010275
+Generation 164: fitness 22362.704504010275
+	Fitness improved
+
+Iteration 165
+	CROSS-OVER best fitness: 22362.704313584865
+	MUTATION best fitness: 22362.704313584865
+Generation 165: fitness 22362.704313584865
+	Fitness improved
+
+Iteration 166
+	CROSS-OVER best fitness: 22362.70392089017
+	MUTATION best fitness: 22362.70392089017
+Generation 166: fitness 22362.70392089017
+	Fitness improved
+
+Iteration 167
+	CROSS-OVER best fitness: 22362.703384752982
+	MUTATION best fitness: 22362.703384752982
+Generation 167: fitness 22362.703384752982
+	Fitness improved
+
+Iteration 168
+	CROSS-OVER best fitness: 22362.703122273517
+	MUTATION best fitness: 22362.703122273517
+Generation 168: fitness 22362.703122273517
+	Fitness improved
+
+Iteration 169
+	CROSS-OVER best fitness: 22362.70277406915
+	MUTATION best fitness: 22362.70277406915
+Generation 169: fitness 22362.70277406915
+	Fitness improved
+
+Iteration 170
+	CROSS-OVER best fitness: 22362.70246403637
+	MUTATION best fitness: 22362.70246403637
+Generation 170: fitness 22362.70246403637
+	Fitness improved
+
+Iteration 171
+	CROSS-OVER best fitness: 22362.702108882546
+	MUTATION best fitness: 22362.702108882546
+Generation 171: fitness 22362.702108882546
+	Fitness improved
+
+Iteration 172
+	CROSS-OVER best fitness: 22362.701938358307
+	MUTATION best fitness: 22362.701938358307
+Generation 172: fitness 22362.701938358307
+	Fitness improved
+
+Iteration 173
+	CROSS-OVER best fitness: 22362.701879478096
+	MUTATION best fitness: 22362.701879478096
+Generation 173: fitness 22362.701879478096
+	Fitness improved
+
+Iteration 174
+	CROSS-OVER best fitness: 22362.701308426447
+	MUTATION best fitness: 22362.701308426447
+Generation 174: fitness 22362.701308426447
+	Fitness improved
+
+Iteration 175
+	CROSS-OVER best fitness: 22362.701174785216
+	MUTATION best fitness: 22362.701174785216
+Generation 175: fitness 22362.701174785216
+	Fitness improved
+
+Iteration 176
+	CROSS-OVER best fitness: 22362.701063438642
+	MUTATION best fitness: 22362.701063438642
+Generation 176: fitness 22362.701063438642
+	Fitness improved
+
+Iteration 177
+	CROSS-OVER best fitness: 22362.700905848338
+	MUTATION best fitness: 22362.700905848338
+Generation 177: fitness 22362.700905848338
+	Fitness improved
+
+Iteration 178
+	CROSS-OVER best fitness: 22362.70085800779
+	MUTATION best fitness: 22362.70085800779
+Generation 178: fitness 22362.70085800779
+	Fitness improved
+
+Iteration 179
+	CROSS-OVER best fitness: 22362.70080803647
+	MUTATION best fitness: 22362.70080803647
+Generation 179: fitness 22362.70080803647
+	Fitness improved
+
+Iteration 180
+	CROSS-OVER best fitness: 22362.700801921
+	MUTATION best fitness: 22362.700801921
+Generation 180: fitness 22362.700801921
+	Fitness improved
+
+Iteration 181
+	CROSS-OVER best fitness: 22362.700699067434
+	MUTATION best fitness: 22362.700699067434
+Generation 181: fitness 22362.700699067434
+	Fitness improved
+
+Iteration 182
+	CROSS-OVER best fitness: 22362.70069683904
+	MUTATION best fitness: 22362.70069683904
+Generation 182: fitness 22362.70069683904
+	Fitness improved
+
+Iteration 183
+	CROSS-OVER best fitness: 22362.70068716107
+	MUTATION best fitness: 22362.70069005195
+Generation 183: fitness 22362.70069005195
+	Fitness improved
+
+Iteration 184
+	CROSS-OVER best fitness: 22362.700671307666
+	MUTATION best fitness: 22362.700671307666
+Generation 184: fitness 22362.700671307666
+	Fitness improved
+
+Iteration 185
+	CROSS-OVER best fitness: 22362.700661986324
+	MUTATION best fitness: 22362.700662288535
+Generation 185: fitness 22362.700662288535
+	Fitness improved
+
+Iteration 186
+	CROSS-OVER best fitness: 22362.70064911812
+	MUTATION best fitness: 22362.70064911812
+Generation 186: fitness 22362.70064911812
+	Fitness improved
+
+Iteration 187
+	CROSS-OVER best fitness: 22362.700645582987
+	MUTATION best fitness: 22362.700645582987
+Generation 187: fitness 22362.700645582987
+	Fitness improved
+
+Iteration 188
+	CROSS-OVER best fitness: 22362.70064459434
+	MUTATION best fitness: 22362.70064459434
+Generation 188: fitness 22362.70064459434
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 1 generations
+
+Iteration 189
+	CROSS-OVER best fitness: 22362.70064156754
+	MUTATION best fitness: 22362.70064156754
+Generation 189: fitness 22362.70064156754
+	Fitness improved
+
+Iteration 190
+	CROSS-OVER best fitness: 22362.700640927724
+	MUTATION best fitness: 22362.700640927724
+Generation 190: fitness 22362.700640927724
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 1 generations
+
+Iteration 191
+	CROSS-OVER best fitness: 22362.700639048955
+	MUTATION best fitness: 22362.700639048955
+Generation 191: fitness 22362.700639048955
+	Fitness improved
+
+Iteration 192
+	CROSS-OVER best fitness: 22362.700630946532
+	MUTATION best fitness: 22362.700630946532
+Generation 192: fitness 22362.700630946532
+	Fitness improved
+
+Iteration 193
+	CROSS-OVER best fitness: 22362.700630946532
+	MUTATION best fitness: 22362.700630946532
+Generation 193: fitness 22362.700630946532
+	Fitness not improved for 1 generations
+
+Iteration 194
+	CROSS-OVER best fitness: 22362.7006268442
+	MUTATION best fitness: 22362.7006268442
+Generation 194: fitness 22362.7006268442
+	Fitness improved
+
+Iteration 195
+	CROSS-OVER best fitness: 22362.700624492983
+	MUTATION best fitness: 22362.700624492983
+Generation 195: fitness 22362.700624492983
+	Fitness improved
+
+Iteration 196
+	CROSS-OVER best fitness: 22362.70061585496
+	MUTATION best fitness: 22362.70061585496
+Generation 196: fitness 22362.70061585496
+	Fitness improved
+
+Iteration 197
+	CROSS-OVER best fitness: 22362.70061149341
+	MUTATION best fitness: 22362.70061149341
+Generation 197: fitness 22362.70061149341
+	Fitness improved
+
+Iteration 198
+	CROSS-OVER best fitness: 22362.70061149341
+	MUTATION best fitness: 22362.70061149341
+Generation 198: fitness 22362.70061149341
+	Fitness not improved for 1 generations
+
+Iteration 199
+	CROSS-OVER best fitness: 22362.700608203486
+	MUTATION best fitness: 22362.700608203486
+Generation 199: fitness 22362.700608203486
+	Fitness improved
+
+Iteration 200
+	CROSS-OVER best fitness: 22362.70060819837
+	MUTATION best fitness: 22362.70060819837
+Generation 200: fitness 22362.70060819837
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 1 generations
+
+Iteration 201
+	CROSS-OVER best fitness: 22362.70060665153
+	MUTATION best fitness: 22362.70060665153
+Generation 201: fitness 22362.70060665153
+	Fitness improved
+
+Iteration 202
+	CROSS-OVER best fitness: 22362.700604479447
+	MUTATION best fitness: 22362.700604479447
+Generation 202: fitness 22362.700604479447
+	Fitness improved
+
+Iteration 203
+	CROSS-OVER best fitness: 22362.700604464866
+	MUTATION best fitness: 22362.700604464866
+Generation 203: fitness 22362.700604464866
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 1 generations
+
+Iteration 204
+	CROSS-OVER best fitness: 22362.700603236484
+	MUTATION best fitness: 22362.700603236484
+Generation 204: fitness 22362.700603236484
+	Fitness improved
+
+Iteration 205
+	CROSS-OVER best fitness: 22362.700603113866
+	MUTATION best fitness: 22362.700603113866
+Generation 205: fitness 22362.700603113866
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 1 generations
+
+Iteration 206
+	CROSS-OVER best fitness: 22362.700602628705
+	MUTATION best fitness: 22362.700602628705
+Generation 206: fitness 22362.700602628705
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 2 generations
+
+Iteration 207
+	CROSS-OVER best fitness: 22362.70060173099
+	MUTATION best fitness: 22362.700602335623
+Generation 207: fitness 22362.700602335623
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 3 generations
+
+Iteration 208
+	CROSS-OVER best fitness: 22362.700599620097
+	MUTATION best fitness: 22362.700599620097
+Generation 208: fitness 22362.700599620097
+	Fitness improved
+
+Iteration 209
+	CROSS-OVER best fitness: 22362.700599580796
+	MUTATION best fitness: 22362.700599580796
+Generation 209: fitness 22362.700599580796
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 1 generations
+
+Iteration 210
+	CROSS-OVER best fitness: 22362.700599213946
+	MUTATION best fitness: 22362.700599213946
+Generation 210: fitness 22362.700599213946
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 2 generations
+
+Iteration 211
+	CROSS-OVER best fitness: 22362.700599042684
+	MUTATION best fitness: 22362.700599042684
+Generation 211: fitness 22362.700599042684
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 3 generations
+
+Iteration 212
+	CROSS-OVER best fitness: 22362.70059904269
+	MUTATION best fitness: 22362.70059904269
+Generation 212: fitness 22362.700599042684
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 4 generations
+
+Iteration 213
+	CROSS-OVER best fitness: 22362.700598886342
+	MUTATION best fitness: 22362.700598886342
+Generation 213: fitness 22362.700598886342
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 5 generations
+
+Iteration 214
+	CROSS-OVER best fitness: 22362.700598733467
+	MUTATION best fitness: 22362.700598733467
+Generation 214: fitness 22362.700598733467
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 6 generations
+
+Iteration 215
+	CROSS-OVER best fitness: 22362.700598713694
+	MUTATION best fitness: 22362.700598716438
+Generation 215: fitness 22362.700598716438
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 7 generations
+
+Iteration 216
+	CROSS-OVER best fitness: 22362.70059862045
+	MUTATION best fitness: 22362.700598648087
+Generation 216: fitness 22362.700598648087
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 8 generations
+
+Iteration 217
+	CROSS-OVER best fitness: 22362.700598553136
+	MUTATION best fitness: 22362.700598553136
+Generation 217: fitness 22362.700598553136
+	Fitness improved
+
+Iteration 218
+	CROSS-OVER best fitness: 22362.700598522784
+	MUTATION best fitness: 22362.700598522784
+Generation 218: fitness 22362.700598522784
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 1 generations
+
+Iteration 219
+	CROSS-OVER best fitness: 22362.700598499752
+	MUTATION best fitness: 22362.700598499752
+Generation 219: fitness 22362.700598499752
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 2 generations
+
+Iteration 220
+	CROSS-OVER best fitness: 22362.700598484542
+	MUTATION best fitness: 22362.700598484542
+Generation 220: fitness 22362.700598484542
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 3 generations
+
+Iteration 221
+	CROSS-OVER best fitness: 22362.700598283518
+	MUTATION best fitness: 22362.700598283518
+Generation 221: fitness 22362.700598283518
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 4 generations
+
+Iteration 222
+	CROSS-OVER best fitness: 22362.700598238545
+	MUTATION best fitness: 22362.700598238545
+Generation 222: fitness 22362.700598238545
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 5 generations
+
+Iteration 223
+	CROSS-OVER best fitness: 22362.700598231953
+	MUTATION best fitness: 22362.700598231953
+Generation 223: fitness 22362.700598231953
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 6 generations
+
+Iteration 224
+	CROSS-OVER best fitness: 22362.700598203308
+	MUTATION best fitness: 22362.700598203308
+Generation 224: fitness 22362.700598203308
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 7 generations
+
+Iteration 225
+	CROSS-OVER best fitness: 22362.700598189895
+	MUTATION best fitness: 22362.700598189895
+Generation 225: fitness 22362.700598189895
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 8 generations
+
+Iteration 226
+	CROSS-OVER best fitness: 22362.700598182353
+	MUTATION best fitness: 22362.700598182353
+Generation 226: fitness 22362.700598182353
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 9 generations
+
+Iteration 227
+	CROSS-OVER best fitness: 22362.700598181593
+	MUTATION best fitness: 22362.700598181593
+Generation 227: fitness 22362.700598181593
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 10 generations
+
+Iteration 228
+	CROSS-OVER best fitness: 22362.70059818056
+	MUTATION best fitness: 22362.70059818056
+Generation 228: fitness 22362.70059818056
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 11 generations
+
+Iteration 229
+	CROSS-OVER best fitness: 22362.70059818071
+	MUTATION best fitness: 22362.70059818071
+Generation 229: fitness 22362.70059818056
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 12 generations
+
+Iteration 230
+	CROSS-OVER best fitness: 22362.700598180163
+	MUTATION best fitness: 22362.700598180163
+Generation 230: fitness 22362.700598180163
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 13 generations
+
+Iteration 231
+	CROSS-OVER best fitness: 22362.700598179403
+	MUTATION best fitness: 22362.700598179403
+Generation 231: fitness 22362.700598179403
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 14 generations
+
+Iteration 232
+	CROSS-OVER best fitness: 22362.70059817893
+	MUTATION best fitness: 22362.70059817893
+Generation 232: fitness 22362.70059817893
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 15 generations
+
+Iteration 233
+	CROSS-OVER best fitness: 22362.700598178446
+	MUTATION best fitness: 22362.700598178446
+Generation 233: fitness 22362.700598178446
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 16 generations
+
+Iteration 234
+	CROSS-OVER best fitness: 22362.700598178442
+	MUTATION best fitness: 22362.700598178442
+Generation 234: fitness 22362.700598178442
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 17 generations
+
+Iteration 235
+	CROSS-OVER best fitness: 22362.70059817814
+	MUTATION best fitness: 22362.70059817814
+Generation 235: fitness 22362.70059817814
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 18 generations
+
+Iteration 236
+	CROSS-OVER best fitness: 22362.70059817807
+	MUTATION best fitness: 22362.70059817807
+Generation 236: fitness 22362.70059817807
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 19 generations
+
+Iteration 237
+	CROSS-OVER best fitness: 22362.700598177977
+	MUTATION best fitness: 22362.700598177977
+Generation 237: fitness 22362.700598177977
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 20 generations
+
+Iteration 238
+	CROSS-OVER best fitness: 22362.700598177486
+	MUTATION best fitness: 22362.700598177486
+Generation 238: fitness 22362.700598177486
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 21 generations
+
+Iteration 239
+	CROSS-OVER best fitness: 22362.70059817663
+	MUTATION best fitness: 22362.70059817663
+Generation 239: fitness 22362.70059817663
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 22 generations
+
+Iteration 240
+	CROSS-OVER best fitness: 22362.700598176452
+	MUTATION best fitness: 22362.700598176452
+Generation 240: fitness 22362.700598176452
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 23 generations
+
+Iteration 241
+	CROSS-OVER best fitness: 22362.70059817646
+	MUTATION best fitness: 22362.70059817646
+Generation 241: fitness 22362.700598176452
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 24 generations
+
+Iteration 242
+	CROSS-OVER best fitness: 22362.700598176212
+	MUTATION best fitness: 22362.700598176216
+Generation 242: fitness 22362.700598176216
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 25 generations
+
+Iteration 243
+	CROSS-OVER best fitness: 22362.700598176172
+	MUTATION best fitness: 22362.700598176172
+Generation 243: fitness 22362.700598176172
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 26 generations
+
+Iteration 244
+	CROSS-OVER best fitness: 22362.70059817591
+	MUTATION best fitness: 22362.70059817591
+Generation 244: fitness 22362.70059817591
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 27 generations
+
+Iteration 245
+	CROSS-OVER best fitness: 22362.700598176183
+	MUTATION best fitness: 22362.700598176183
+Generation 245: fitness 22362.70059817591
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 28 generations
+
+Iteration 246
+	CROSS-OVER best fitness: 22362.700598175907
+	MUTATION best fitness: 22362.700598175907
+Generation 246: fitness 22362.700598175907
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 29 generations
+
+Iteration 247
+	CROSS-OVER best fitness: 22362.700598175543
+	MUTATION best fitness: 22362.700598175543
+Generation 247: fitness 22362.700598175543
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 30 generations
+
+Iteration 248
+	CROSS-OVER best fitness: 22362.70059817554
+	MUTATION best fitness: 22362.70059817554
+Generation 248: fitness 22362.70059817554
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 31 generations
+
+Iteration 249
+	CROSS-OVER best fitness: 22362.70059817537
+	MUTATION best fitness: 22362.70059817537
+Generation 249: fitness 22362.70059817537
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 32 generations
+
+Iteration 250
+	CROSS-OVER best fitness: 22362.700598175066
+	MUTATION best fitness: 22362.700598175066
+Generation 250: fitness 22362.700598175066
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 33 generations
+
+Iteration 251
+	CROSS-OVER best fitness: 22362.70059817491
+	MUTATION best fitness: 22362.70059817491
+Generation 251: fitness 22362.70059817491
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 34 generations
+
+Iteration 252
+	CROSS-OVER best fitness: 22362.700598174946
+	MUTATION best fitness: 22362.700598174946
+Generation 252: fitness 22362.70059817491
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 35 generations
+
+Iteration 253
+	CROSS-OVER best fitness: 22362.70059817466
+	MUTATION best fitness: 22362.70059817489
+Generation 253: fitness 22362.70059817489
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 36 generations
+
+Iteration 254
+	CROSS-OVER best fitness: 22362.70059817475
+	MUTATION best fitness: 22362.70059817475
+Generation 254: fitness 22362.70059817475
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 37 generations
+
+Iteration 255
+	CROSS-OVER best fitness: 22362.7005981747
+	MUTATION best fitness: 22362.7005981747
+Generation 255: fitness 22362.7005981747
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 38 generations
+
+Iteration 256
+	CROSS-OVER best fitness: 22362.7005981745
+	MUTATION best fitness: 22362.7005981745
+Generation 256: fitness 22362.7005981745
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 39 generations
+
+Iteration 257
+	CROSS-OVER best fitness: 22362.700598174546
+	MUTATION best fitness: 22362.700598174546
+Generation 257: fitness 22362.7005981745
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 40 generations
+
+Iteration 258
+	CROSS-OVER best fitness: 22362.7005981744
+	MUTATION best fitness: 22362.7005981744
+Generation 258: fitness 22362.7005981744
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 41 generations
+
+Iteration 259
+	CROSS-OVER best fitness: 22362.700598174357
+	MUTATION best fitness: 22362.700598174357
+Generation 259: fitness 22362.700598174357
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 42 generations
+
+Iteration 260
+	CROSS-OVER best fitness: 22362.700598174284
+	MUTATION best fitness: 22362.700598174284
+Generation 260: fitness 22362.700598174284
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 43 generations
+
+Iteration 261
+	CROSS-OVER best fitness: 22362.700598174284
+	MUTATION best fitness: 22362.70059817429
+Generation 261: fitness 22362.700598174284
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 44 generations
+
+Iteration 262
+	CROSS-OVER best fitness: 22362.70059817423
+	MUTATION best fitness: 22362.70059817423
+Generation 262: fitness 22362.70059817423
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 45 generations
+
+Iteration 263
+	CROSS-OVER best fitness: 22362.70059817435
+	MUTATION best fitness: 22362.70059817435
+Generation 263: fitness 22362.70059817423
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 46 generations
+
+Iteration 264
+	CROSS-OVER best fitness: 22362.700598173935
+	MUTATION best fitness: 22362.700598173935
+Generation 264: fitness 22362.700598173935
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 47 generations
+
+Iteration 265
+	CROSS-OVER best fitness: 22362.70059817383
+	MUTATION best fitness: 22362.70059817383
+Generation 265: fitness 22362.70059817383
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 48 generations
+
+Iteration 266
+	CROSS-OVER best fitness: 22362.700598173622
+	MUTATION best fitness: 22362.700598173622
+Generation 266: fitness 22362.700598173622
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 49 generations
+
+Iteration 267
+	CROSS-OVER best fitness: 22362.700598173567
+	MUTATION best fitness: 22362.700598173567
+Generation 267: fitness 22362.700598173567
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 50 generations
+
+Iteration 268
+	CROSS-OVER best fitness: 22362.700598173567
+	MUTATION best fitness: 22362.700598173753
+Generation 268: fitness 22362.700598173567
+	Fitness improved but less than 1e-6
+	Fitness improved a little for 51 generations
+**********STOP CRITERION DEPTH REACHED**********
+[0.01853255 0.0043526  0.05132468 0.03372386 0.08492172 0.24781848
+ 0.09804668 0.00116747 0.00382443 0.013521   0.02829933 0.10930799
+ 0.2782881  0.02687111]
