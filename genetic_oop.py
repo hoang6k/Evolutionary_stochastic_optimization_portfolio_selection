@@ -282,7 +282,8 @@ if __name__ == '__main__':
                 'mutation_probability': 1.0, 'mutation_ratio': 0.1,
                 'generations_number': 500, 'stop_criterion_depth': 50}
 
-    path = 'data/data_concat.csv'
+    # path = 'data/data_concat.csv'
+    path = 'data/dulieu2018.csv'
     df = pd.read_csv(path)
     genes_number = len(df.columns) - 1
     z_score = 1.0
@@ -293,6 +294,8 @@ if __name__ == '__main__':
     solution, fitness = population.generate_populations(config=config, verbose=1)
 
     print(solution._weight)
+    print(fitness)
     solution = np.reshape(solution._weight, (1, genes_number))
     result = pd.DataFrame(solution, columns=list(df))
-    result.to_csv('result_vn30.csv')
+    # result.to_csv('result_vn30.csv')
+    result.to_csv('result_' + path[path.rfind('/') + 1:-4])
