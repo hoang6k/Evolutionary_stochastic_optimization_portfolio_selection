@@ -85,6 +85,22 @@ class Population:
                 except IndexError:
                     weight_1 = np.concatenate((father[:two_points[0]], cs_genes_mother))
                     weight_2 = np.concatenate((mother[:two_points[0]], cs_genes_father))
+                overweight_1 = np.where(weight_1 > 0.4)
+                if len(overweight_1[0]) == 1:
+                    weight_1 += (weight_1[overweight_1[0][0]] - 0.4) / (len(weight_1) - 1)
+                    weight_1[overweight_1[0][0]] = 0.4
+                elif len(overweight_1[0]) == 2:
+                    weight_1 += (weight_1[overweight_1[0][0]] + weight_1[overweight_1[0][1]] - 0.8) / (len(weight_1) - 2)
+                    weight_1[overweight_1[0][0]] = 0.4
+                    weight_1[overweight_1[0][1]] = 0.4
+                overweight_2 = np.where(weight_2 > 0.4)
+                if len(overweight_2[0]) == 1:
+                    weight_2 += (weight_2[overweight_2[0][0]] - 0.4) / (len(weight_2) - 1)
+                    weight_2[overweight_2[0][0]] = 0.4
+                elif len(overweight_2[0]) == 2:
+                    weight_2 += (weight_2[overweight_2[0][0]] + weight_2[overweight_2[0][1]] - 0.8) / (len(weight_2) - 2)
+                    weight_2[overweight_2[0][0]] = 0.4
+                    weight_2[overweight_2[0][1]] = 0.4
                 children.append(Chromosome(weight_1))
                 children.append(Chromosome(weight_2))
         return children
@@ -298,4 +314,4 @@ if __name__ == '__main__':
     solution = np.reshape(solution._weight, (1, genes_number))
     result = pd.DataFrame(solution, columns=list(df))
     # result.to_csv('result_vn30.csv')
-    result.to_csv('result_' + path[path.rfind('/') + 1:-4])
+    result.to_csv('result_' + path[path.rfind('/') + 1:-4] + '.csv', index=False)
