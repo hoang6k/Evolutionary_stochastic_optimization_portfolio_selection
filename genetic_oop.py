@@ -299,7 +299,7 @@ if __name__ == '__main__':
                 'generations_number': 500, 'stop_criterion_depth': 50}
 
     # path = 'data/data_concat.csv'
-    path = 'data/input.csv'
+    path = 'data/28_HVTC_DHBK_2.2.csv'
     df = pd.read_csv(path)
     genes_number = len(df.columns) - 1
     z_score = 1.0
