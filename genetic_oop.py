@@ -20,10 +20,12 @@ class Chromosome:
         self._weight = weight
         if Chromosome._method == 'VaR':
             self._fitness = self.calculate_VaR_fitness()
+        elif Chromosome._method == 'VaRp':
+            self._fitness = self.calculate_VaRp_fitness()
         elif Chromosome._method == 'markovitz':
             self._fitness = self.calculate_markovitz_fitness()
         else:
-            self._fitness = self.calculate_fitness_sharp_coef()
+            self._fitness = self.calculate_sharp_coef_fitness()
 
     def calculate_VaR_fitness(self):
         value_ptf = Chromosome._pct_change * self._weight * 1e6
@@ -34,6 +36,16 @@ class Chromosome:
         self._fitness = -_VaR
         return self._fitness
 
+    def calculate_VaRp_fitness(self):
+        port_variance = np.dot(self._weight, np.dot(Chromosome._annual_cov_matrix, self._weight.T))
+        port_standard_devitation = np.sqrt(port_variance)
+        port_returns_expected = np.sum(self._weight * Chromosome._annual_returns)
+        self._fitness = (- port_returns_expected + 2.33 * port_standard_devitation) * 1e6
+        if self._fitness < 0:
+            print('unexpected fitness < 0')
+            exit()
+        return self._fitness
+
     def calculate_markovitz_fitness(self):
         _lambda = Chromosome._lambda
         port_variance = np.dot(self._weight, np.dot(Chromosome._annual_cov_matrix, self._weight.T))
@@ -42,7 +54,7 @@ class Chromosome:
         self._fitness = (_lambda * port_standard_devitation - (1 - _lambda) * port_returns_expected) * 1e6
         return self._fitness
 
-    def calculate_fitness_sharp_coef(self):
+    def calculate_sharp_coef_fitness(self):
         port_variance = np.dot(self._weight, np.dot(Chromosome._annual_cov_matrix, self._weight.T))
         port_standard_devitation = np.sqrt(port_variance)
         port_returns_expected = np.sum(self._weight * Chromosome._annual_returns)
@@ -329,8 +341,8 @@ class Population:
 
 
 if __name__ == '__main__':
-    #optimize function: VaR, markovitz, sharp_coef
-    config = {'optimize_function': 'markovitz',
+    #optimize function: VaR, markovitz, sharp_coef, VaRp
+    config = {'optimize_function': 'VaRp',
                 'population_size': 200, 'offspring_ratio': 0.5,
                 'crossover_probability': 1.0,
                 'selection_method': {'type': 'roulette_wheel', 'k': 10},
@@ -339,7 +351,7 @@ if __name__ == '__main__':
                 'generations_number': 500, 'stop_criterion_depth': 50}
 
     # path = 'data/data_concat.csv'
-    path = 'data/28_HVTC_DHBK_2.2.csv'
+    path = 'data/dulieudetai.csv'
     df = pd.read_csv(path)
     genes_number = len(df.columns) - 1
     z_score = 1.0
