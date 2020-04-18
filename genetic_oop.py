@@ -172,7 +172,7 @@ class Population:
 
     def roulette_wheel_selection(self, generation, k=5):
         fitness = np.asarray([chromo._fitness for chromo in generation])
-        if Chromosome._method == 'VaR':
+        if Chromosome._method in ['VaR', 'VaRp']:
             fitness = 1 - fitness / np.sum(fitness)
         else:
             # min-max scaling
