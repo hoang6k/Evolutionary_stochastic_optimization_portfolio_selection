@@ -1,10 +1,11 @@
 import pandas as pd
 
 
-path = 'raw_data\\28_HVTC_DHBK_2.2.xlsx'
+path = 'raw_data\\input_2.xlsx'
 data_xlsx = pd.read_excel(path, index_col=None, skiprows=1)
 # data_xlsx.reindex(index=data.index[::-1])
 data_xlsx = data_xlsx.iloc[::-1]
+print(data_xlsx)
 data_xlsx.to_csv('data\\' + path[path.rfind('\\') + 1:-4] + 'csv', index=False)
 
 

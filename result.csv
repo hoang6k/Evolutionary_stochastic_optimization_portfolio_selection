@@ -1,5 +1,0 @@
-selection_type,k,crossover_type,alpha,best_fitness
-tournament,10,1point,0.4,23864
-tournament,10,1point,auto,23821
-roullete_wheel,10,1point,auto,23801
-roullete_wheel,10,2points,auto,22362

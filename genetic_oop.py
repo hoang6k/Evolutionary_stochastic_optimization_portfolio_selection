@@ -8,15 +8,24 @@ np.random.seed(0)
 
 class Chromosome:
     _pct_change = None
-    _z_score = 1.0
+    _z_score = None
+    _lambda = None
+    _method = None
+    _annual_returns = None
+    _annual_cov_matrix = None
 
     def __init__(self, weight):
         if weight is None:
             weight = []
         self._weight = weight
-        self._fitness = self.calculate_fitness()
-    
-    def calculate_fitness(self):
+        if Chromosome._method == 'VaR':
+            self._fitness = self.calculate_VaR_fitness()
+        elif Chromosome._method == 'markovitz':
+            self._fitness = self.calculate_markovitz_fitness()
+        else:
+            self._fitness = self.calculate_fitness_sharp_coef()
+
+    def calculate_VaR_fitness(self):
         value_ptf = Chromosome._pct_change * self._weight * 1e6
         value_ptf['Value of Portfolio'] = value_ptf.sum(axis=1)
         ptf_percentage = value_ptf['Value of Portfolio']
@@ -24,6 +33,31 @@ class Chromosome:
         _VaR =  np.percentile(ptf_percentage, Chromosome._z_score)
         self._fitness = -_VaR
         return self._fitness
+
+    def calculate_markovitz_fitness(self):
+        _lambda = Chromosome._lambda
+        port_variance = np.dot(self._weight, np.dot(Chromosome._annual_cov_matrix, self._weight.T))
+        port_standard_devitation = np.sqrt(port_variance)
+        port_returns_expected = np.sum(self._weight * Chromosome._annual_returns)
+        self._fitness = (_lambda * port_standard_devitation - (1 - _lambda) * port_returns_expected) * 1e6
+        return self._fitness
+
+    def calculate_fitness_sharp_coef(self):
+        port_variance = np.dot(self._weight, np.dot(Chromosome._annual_cov_matrix, self._weight.T))
+        port_standard_devitation = np.sqrt(port_variance)
+        port_returns_expected = np.sum(self._weight * Chromosome._annual_returns)
+        self._fitness = - port_returns_expected / port_standard_devitation * 1e6
+        return self._fitness
+
+    @staticmethod
+    def calculate_sd_e(df, z_score, _lambda, optimize):
+        df.drop(['DTYYYYMMDD'], axis=1, inplace=True)
+        Chromosome._method = optimize
+        Chromosome._z_score = z_score
+        Chromosome._lambda = _lambda
+        Chromosome._pct_change = df.pct_change()
+        Chromosome._annual_returns = Chromosome._pct_change.mean() * 252
+        Chromosome._annual_cov_matrix = Chromosome._pct_change.cov() * 252
 
 
 class Population:
@@ -126,11 +160,16 @@ class Population:
 
     def roulette_wheel_selection(self, generation, k=5):
         fitness = np.asarray([chromo._fitness for chromo in generation])
-        # change probability distribution from min to max
-        fitness = 1 - fitness / np.sum(fitness)
+        if Chromosome._method == 'VaR':
+            fitness = 1 - fitness / np.sum(fitness)
+        else:
+            # min-max scaling
+            _min = np.min(fitness)
+            _max = np.max(fitness)
+            fitness = (_max - fitness + 0.1) / (_max - _min + 0.2)
         fitness /= np.sum(fitness)
         parents = []
-        for i in range(self._offspring_number):
+        for _ in range(self._offspring_number):
             chosen_indexes = np.random.choice(np.arange(len(fitness)), size=k, replace=False, p=fitness)
             best_index = chosen_indexes[np.argmax(fitness[chosen_indexes])]
             parents.append(copy.deepcopy(generation[best_index]))
@@ -139,7 +178,7 @@ class Population:
     def tournament_selection(self, generation, k):
         fitness = np.asarray([chromo._fitness for chromo in generation])
         parents = []
-        for i in range(self._offspring_number):
+        for _ in range(self._offspring_number):
             chosen_indexes = np.random.choice(self._population_size, size=k, replace=False)
             best_index = chosen_indexes[np.argmin(fitness[chosen_indexes])]
             parents.append(copy.deepcopy(generation[best_index]))
@@ -282,16 +321,17 @@ class Population:
 
 
     @staticmethod
-    def population_initialization(df, z_score: float = 1.0, population_size: int = 100, genes_number: int = None):
-        df.drop(['DTYYYYMMDD'], axis=1, inplace=True)
-        Chromosome._pct_change = df.pct_change()
-        Chromosome._z_score = z_score
+    def population_initialization(df, z_score: float = 1.0, _lambda=0.4, optimize='VaR',
+                                    population_size=100, genes_number: int = None):
+        Chromosome.calculate_sd_e(df, z_score, _lambda, optimize)
         new_population = np.random.dirichlet(np.ones(genes_number), size=population_size)
         return Population([Chromosome(chromo) for chromo in new_population])
 
 
 if __name__ == '__main__':
-    config = {'population_size': 200, 'offspring_ratio': 0.5,
+    #optimize function: VaR, markovitz, sharp_coef
+    config = {'optimize_function': 'markovitz',
+                'population_size': 200, 'offspring_ratio': 0.5,
                 'crossover_probability': 1.0,
                 'selection_method': {'type': 'roulette_wheel', 'k': 10},
                 'crossover_method': {'type': '2points', 'parameters': None},
@@ -299,18 +339,24 @@ if __name__ == '__main__':
                 'generations_number': 500, 'stop_criterion_depth': 50}
 
     # path = 'data/data_concat.csv'
-    path = 'data/input_2.csv'
+    path = 'data/28_HVTC_DHBK_2.2.csv'
     df = pd.read_csv(path)
     genes_number = len(df.columns) - 1
     z_score = 1.0
+    _lambda = 0.4
 
-    population = Population.population_initialization(df, z_score,
+    population = Population.population_initialization(df, z_score, _lambda,
+                                                        optimize=config['optimize_function'],
                                                         population_size=config['population_size'],
                                                         genes_number=genes_number)
     solution, fitness = population.generate_populations(config=config, verbose=1)
 
     print(solution._weight)
     print(fitness)
-    solution = np.reshape(solution._weight, (1, genes_number))
-    result = pd.DataFrame(solution, columns=list(df))
-    result.to_csv('result_' + path[path.rfind('/') + 1:-4] + '.csv', index=False)
+    if config['optimize_function'] == 'sharp_coef':
+        fitness = -fitness
+    fitness = np.asarray([fitness])
+    solution = np.reshape(solution._weight, (genes_number))
+    data = np.reshape(np.concatenate([fitness, solution]), (1,-1))
+    result = pd.DataFrame(data, columns=[config['optimize_function']] + list(df))
+    result.to_csv('result/result_' + path[path.rfind('/') + 1:-4] + '_' + config['optimize_function'] + '.csv', index=False)
