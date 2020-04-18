@@ -107,6 +107,54 @@ class Population:
                 new_children.append(Chromosome(new_weight))
         return new_children
 
+    def crossover_all(self, parents, alpha=None):
+        pass
+
+    def crossover_random(self, parents, alpha=None):
+        genes_number = len(parents[0]._weight)
+        children = []
+        for i in range(int(self._offspring_number / 2)):
+            if self.verbose > 1:
+                print('\t\t{}_th 2 childs'.format(i + 1))
+            _crossover = bool(np.random.rand(1) <= self._crossover_probability)
+            if _crossover:
+                index = np.random.randint(len(parents))
+                father = parents.pop(index)._weight
+                index = np.random.randint(len(parents))
+                mother = parents.pop(index)._weight
+                crossover_genes_indexes = np.random.choice(
+                                            np.arange(genes_number), 
+                                            size=np.random.randint(genes_number), 
+                                            replace=False)
+                sorted_indexes = np.sort(crossover_genes_indexes)
+                _cs_genes_father = father[sorted_indexes]
+                _cs_genes_mother = mother[sorted_indexes]
+                cs_genes_father = _cs_genes_father * np.sum(_cs_genes_mother) / np.sum(_cs_genes_father)
+                cs_genes_mother = _cs_genes_mother *  np.sum(_cs_genes_father) / np.sum(_cs_genes_mother)
+                father[sorted_indexes] = cs_genes_mother
+                mother[sorted_indexes] = cs_genes_father
+                weight_1 = father
+                weight_2 = mother
+                overweight_1 = np.where(weight_1 > 0.4)
+                if len(overweight_1[0]) == 1:
+                    weight_1 += (weight_1[overweight_1[0][0]] - 0.4) / (len(weight_1) - 1)
+                    weight_1[overweight_1[0][0]] = 0.4
+                elif len(overweight_1[0]) == 2:
+                    weight_1 += (weight_1[overweight_1[0][0]] + weight_1[overweight_1[0][1]] - 0.8) / (len(weight_1) - 2)
+                    weight_1[overweight_1[0][0]] = 0.4
+                    weight_1[overweight_1[0][1]] = 0.4
+                overweight_2 = np.where(weight_2 > 0.4)
+                if len(overweight_2[0]) == 1:
+                    weight_2 += (weight_2[overweight_2[0][0]] - 0.4) / (len(weight_2) - 1)
+                    weight_2[overweight_2[0][0]] = 0.4
+                elif len(overweight_2[0]) == 2:
+                    weight_2 += (weight_2[overweight_2[0][0]] + weight_2[overweight_2[0][1]] - 0.8) / (len(weight_2) - 2)
+                    weight_2[overweight_2[0][0]] = 0.4
+                    weight_2[overweight_2[0][1]] = 0.4
+                children.append(Chromosome(weight_1))
+                children.append(Chromosome(weight_2))
+        return children
+
     def crossover_2points(self, parents, alpha=None):
         genes_number = len(parents[0]._weight)
         children = []
@@ -233,7 +281,8 @@ class Population:
             start_time = time()
         crossover_switcher = {
             '1point': self.crossover_1point,
-            '2points': self.crossover_2points
+            '2points': self.crossover_2points,
+            'random': self.crossover_random
         }
         children = crossover_switcher.get(
                     self._crossover_method['type'],
@@ -314,10 +363,10 @@ class Population:
                     if self.verbose > 0:
                         print('**********STOP CRITERION DEPTH REACHED**********')
                     break
-            elif self._best_fitness - new_best_fitness < 1e-6:
+            elif self._best_fitness - new_best_fitness < 1e-5:
                 depth += 1
                 if self.verbose > 0:
-                    print('\tFitness improved but less than 1e-6')
+                    print('\tFitness improved but less than 1e-5')
                 if self.verbose > 0:
                     print('\tFitness improved a little for {} generations'.format(depth))
                 if depth > self._stop_criterion_depth:
@@ -342,13 +391,13 @@ class Population:
 
 if __name__ == '__main__':
     #optimize function: VaR, markovitz, sharp_coef, VaRp
-    config = {'optimize_function': 'VaRp',
-                'population_size': 200, 'offspring_ratio': 0.5,
+    config = {'optimize_function': 'sharp_coef',
+                'population_size': 500, 'offspring_ratio': 0.5,
                 'crossover_probability': 1.0,
-                'selection_method': {'type': 'roulette_wheel', 'k': 10},
-                'crossover_method': {'type': '2points', 'parameters': None},
+                'selection_method': {'type': 'roulette_wheel', 'k': 25},
+                'crossover_method': {'type': 'random', 'parameters': None},
                 'mutation_probability': 1.0, 'mutation_ratio': 0.1,
-                'generations_number': 500, 'stop_criterion_depth': 50}
+                'generations_number': 1000, 'stop_criterion_depth': 100}
 
     # path = 'data/data_concat.csv'
     path = 'data/dulieudetai.csv'
@@ -363,6 +412,7 @@ if __name__ == '__main__':
                                                         genes_number=genes_number)
     solution, fitness = population.generate_populations(config=config, verbose=1)
 
+    cs_type = 'rd' if config['crossover_method']['type'] == 'random' else '2p'
     print(solution._weight)
     print(fitness)
     if config['optimize_function'] == 'sharp_coef':
@@ -371,4 +421,5 @@ if __name__ == '__main__':
     solution = np.reshape(solution._weight, (genes_number))
     data = np.reshape(np.concatenate([fitness, solution]), (1,-1))
     result = pd.DataFrame(data, columns=[config['optimize_function']] + list(df))
-    result.to_csv('result/result_' + path[path.rfind('/') + 1:-4] + '_' + config['optimize_function'] + '.csv', index=False)
+    result.to_csv('result/result_' + path[path.rfind('/') + 1:-4] + '_' + config['optimize_function'] + '_' +
+                    cs_type + str(config['population_size']) + '.csv', index=False)
