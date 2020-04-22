@@ -369,13 +369,15 @@ class Population:
         self._generations_number = config['generations_number']
         self._stop_criterion_depth = config['stop_criterion_depth']
         self.verbose = verbose
-        self.print()
+        # self.print()
 
-        print('Initial fitness: {}'.format(self._best_fitness))        
+        if verbose is not False:
+            print('Initial fitness: {}'.format(self._best_fitness))   
         depth = 0
         for epoch in range(self._generations_number):
             new_best_fitness = self.generate_next_population()
-            print('Generation {}: fitness {}'.format(epoch + 1, new_best_fitness))
+            if verbose is not False:
+                print('Generation {}: fitness {}'.format(epoch + 1, new_best_fitness))
             if new_best_fitness >= self._best_fitness:
                 depth += 1
                 if self.verbose > 0:
@@ -412,7 +414,7 @@ class Population:
 
 if __name__ == '__main__':
     #optimize function: VaR, VaRp, markovitz, markovitz_sqrt, sharp_coef, sharp_coef_sqrt
-    config = {'optimize_function': 'sharp_coef_sqrt',
+    config = {'optimize_function': 'markovitz_sqrt',
                 'population_size': 500, 'offspring_ratio': 0.5,
                 'crossover_probability': 1.0,
                 'selection_method': {'type': 'roulette_wheel', 'k': 25},
@@ -446,4 +448,33 @@ if __name__ == '__main__':
         result.to_csv('result/result_' + path[path.rfind('/') + 1:-4] + '_' + config['optimize_function'] + '_' +
                         cs_type + str(config['population_size']) + '.csv', index=False)
     else:
-        pass
+        result = []
+        _count = 0
+        for _lambda in np.arange(0.75, 1 + 1e-6, 1. / 200):
+            _count += 1
+            print('Iteration ' + str(_count))
+
+            df = pd.read_csv(path)
+            genes_number = len(df.columns) - 1
+            z_score = 1.0
+
+            population = Population.population_initialization(df=df, _lambda=_lambda,
+                                                                optimize=config['optimize_function'],
+                                                                population_size=config['population_size'],
+                                                                genes_number=genes_number)
+            solution, fitness = population.generate_populations(config=config)
+
+            cs_type = 'rd' if config['crossover_method']['type'] == 'random' else '2p'
+            print(fitness)
+            if config['optimize_function'] in ['sharp_coef', 'sharp_coef_sqrt']:
+                fitness = -fitness
+            fitness = np.asarray([fitness])
+            solution = np.reshape(solution._weight, (genes_number))
+            data = np.reshape(np.concatenate([fitness, solution]), (1,-1))
+            result.append([_lambda] + data.tolist()[0])
+        print(result)
+        df = pd.read_csv(path)
+        df.drop(['DTYYYYMMDD'], axis=1, inplace=True)
+        result = pd.DataFrame(result, columns=['lambda', 'markovitz'] + list(df))
+        result.to_csv('result/result_' + path[path.rfind('/') + 1:-4] + '_' + config['optimize_function'] + '_' +
+                        cs_type + str(config['population_size']) + '_4.csv', index=False)
