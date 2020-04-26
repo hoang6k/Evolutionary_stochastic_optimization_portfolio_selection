@@ -89,8 +89,8 @@ class Chromosome:
         Chromosome._z_score = z_score
         Chromosome._lambda = _lambda
         Chromosome._pct_change = df.pct_change()
-        Chromosome._annual_returns = Chromosome._pct_change.mean() * 252
-        Chromosome._annual_cov_matrix = Chromosome._pct_change.cov() * 252
+        Chromosome._annual_returns = Chromosome._pct_change.mean()
+        Chromosome._annual_cov_matrix = Chromosome._pct_change.cov()
 
 
 class Population:
@@ -340,8 +340,9 @@ class Population:
         self._generations.append(new_generation)
         self._all_best_fitness.append(np.min(new_generation_fitness))
         self._generations_solution.append(new_generation[np.argmin(new_generation_fitness)])
-        if self._all_best_fitness[-1] < self._all_best_fitness[-2]:
-            self._best_solution = self._generations_solution[-1]
+        # if self._all_best_fitness[-1] < self._best_fitness:
+        #     self._best_solution = self._generations_solution[-1]
+        #     self._best_fitness = self._all_best_fitness[-1]
         return self._all_best_fitness[-1]
 
     def print(self):
@@ -371,13 +372,11 @@ class Population:
         self.verbose = verbose
         # self.print()
 
-        if verbose is not False:
-            print('Initial fitness: {}'.format(self._best_fitness))
+        # print('Initial fitness: {}'.format(self._best_fitness))        
         depth = 0
         for epoch in range(self._generations_number):
             new_best_fitness = self.generate_next_population()
-            if verbose is not False:
-                print('Generation {}: fitness {}'.format(epoch + 1, new_best_fitness))
+            # print('Generation {}: fitness {}'.format(epoch + 1, new_best_fitness))
             if new_best_fitness >= self._best_fitness:
                 depth += 1
                 if self.verbose > 0:
@@ -387,9 +386,9 @@ class Population:
                         print('**********STOP CRITERION DEPTH REACHED**********')
                     break
             elif self._best_fitness - new_best_fitness < 1e-5:
+                self._best_solution = self._generations_solution[-1]
+                self._best_fitness = self._all_best_fitness[-1]
                 depth += 1
-                if self.verbose > 0:
-                    print('\tFitness improved but less than 1e-5')
                 if self.verbose > 0:
                     print('\tFitness improved a little for {} generations'.format(depth))
                 if depth > self._stop_criterion_depth:
@@ -397,10 +396,11 @@ class Population:
                         print('**********STOP CRITERION DEPTH REACHED**********')
                     break
             else:
+                self._best_solution = self._generations_solution[-1]
+                self._best_fitness = self._all_best_fitness[-1]
+                depth = 0
                 if self.verbose > 0:
                     print('\tFitness improved')
-                depth = 0
-                self._best_fitness = new_best_fitness
         return self._best_solution, self._best_fitness
 
 
@@ -422,59 +422,33 @@ if __name__ == '__main__':
                 'mutation_probability': 1.0, 'mutation_ratio': 0.1,
                 'generations_number': 1000, 'stop_criterion_depth': 100}
 
-    # path = 'data/data_concat.csv'
     path = 'data/dulieudetai.csv'
-    df = pd.read_csv(path)
-    genes_number = len(df.columns) - 1
-    z_score = 1.0
-    _lambda = 0.4
 
-    if config['optimize_function'] not in ['markovitz', 'markovitz_sqrt']:
-        population = Population.population_initialization(df, z_score, _lambda,
+    result = []
+    _count = 0
+    for _lambda in np.arange(0.75, 1 + 1e-6, 1. / 200):
+        _count += 1
+        print('Iteration ' + str(_count))
+
+        df = pd.read_csv(path)
+        genes_number = len(df.columns) - 1
+        z_score = 1.0
+
+        population = Population.population_initialization(df=df, _lambda=_lambda,
                                                             optimize=config['optimize_function'],
                                                             population_size=config['population_size'],
                                                             genes_number=genes_number)
-        solution, fitness = population.generate_populations(config=config, verbose=1)
+        solution, fitness = population.generate_populations(config=config)
 
-        cs_type = 'rd' if config['crossover_method']['type'] == 'random' else '2p'
-        print(solution._weight)
+        # print(solution._weight)
         print(fitness)
         if config['optimize_function'] in ['sharp_coef', 'sharp_coef_sqrt']:
             fitness = -fitness
         fitness = np.asarray([fitness])
         solution = np.reshape(solution._weight, (genes_number))
         data = np.reshape(np.concatenate([fitness, solution]), (1,-1))
-        result = pd.DataFrame(data, columns=[config['optimize_function']] + list(df))
-        result.to_csv('result/result_' + path[path.rfind('/') + 1:-4] + '_' + config['optimize_function'] + '_' +
-                        cs_type + str(config['population_size']) + '.csv', index=False)
-    else:
-        result = []
-        _count = 0
-        for _lambda in np.arange(0.25, 0.5, 1. / 200):
-            _count += 1
-            print('Iteration ' + str(_count))
-
-            df = pd.read_csv(path)
-            genes_number = len(df.columns) - 1
-            z_score = 1.0
-
-            population = Population.population_initialization(df=df, _lambda=_lambda,
-                                                                optimize=config['optimize_function'],
-                                                                population_size=config['population_size'],
-                                                                genes_number=genes_number)
-            solution, fitness = population.generate_populations(config=config)
-
-            cs_type = 'rd' if config['crossover_method']['type'] == 'random' else '2p'
-            print(fitness)
-            if config['optimize_function'] in ['sharp_coef', 'sharp_coef_sqrt']:
-                fitness = -fitness
-            fitness = np.asarray([fitness])
-            solution = np.reshape(solution._weight, (genes_number))
-            data = np.reshape(np.concatenate([fitness, solution]), (1,-1))
-            result.append([_lambda] + data.tolist()[0])
-        print(result)
-        df = pd.read_csv(path)
-        df.drop(['DTYYYYMMDD'], axis=1, inplace=True)
-        result = pd.DataFrame(result, columns=['lambda', 'markovitz'] + list(df))
-        result.to_csv('result/result_' + path[path.rfind('/') + 1:-4] + '_' + config['optimize_function'] + '_' +
-                        cs_type + str(config['population_size']) + '_2.csv', index=False)
+        result.append([_lambda] + data.tolist()[0])
+    df = pd.read_csv(path)
+    df.drop(['DTYYYYMMDD'], axis=1, inplace=True)
+    result = pd.DataFrame(result, columns=['lambda', 'markovitz'] + list(df))
+    result.to_csv('result/result_' + path[path.rfind('/') + 1:-4] + '_' + config['optimize_function'] + '_4.csv', index=False)

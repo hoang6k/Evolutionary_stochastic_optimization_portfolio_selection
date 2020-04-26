@@ -89,8 +89,8 @@ class Chromosome:
         Chromosome._z_score = z_score
         Chromosome._lambda = _lambda
         Chromosome._pct_change = df.pct_change()
-        Chromosome._annual_returns = Chromosome._pct_change.mean() * 252
-        Chromosome._annual_cov_matrix = Chromosome._pct_change.cov() * 252
+        Chromosome._annual_returns = Chromosome._pct_change.mean()
+        Chromosome._annual_cov_matrix = Chromosome._pct_change.cov()
 
 
 class Population:
@@ -340,8 +340,9 @@ class Population:
         self._generations.append(new_generation)
         self._all_best_fitness.append(np.min(new_generation_fitness))
         self._generations_solution.append(new_generation[np.argmin(new_generation_fitness)])
-        if self._all_best_fitness[-1] < self._all_best_fitness[-2]:
-            self._best_solution = self._generations_solution[-1]
+        # if self._all_best_fitness[-1] < self._best_fitness:
+        #     self._best_solution = self._generations_solution[-1]
+        #     self._best_fitness = self._all_best_fitness[-1]
         return self._all_best_fitness[-1]
 
     def print(self):
@@ -385,9 +386,9 @@ class Population:
                         print('**********STOP CRITERION DEPTH REACHED**********')
                     break
             elif self._best_fitness - new_best_fitness < 1e-5:
+                self._best_solution = self._generations_solution[-1]
+                self._best_fitness = self._all_best_fitness[-1]
                 depth += 1
-                if self.verbose > 0:
-                    print('\tFitness improved but less than 1e-5')
                 if self.verbose > 0:
                     print('\tFitness improved a little for {} generations'.format(depth))
                 if depth > self._stop_criterion_depth:
@@ -395,10 +396,11 @@ class Population:
                         print('**********STOP CRITERION DEPTH REACHED**********')
                     break
             else:
+                self._best_solution = self._generations_solution[-1]
+                self._best_fitness = self._all_best_fitness[-1]
+                depth = 0
                 if self.verbose > 0:
                     print('\tFitness improved')
-                depth = 0
-                self._best_fitness = new_best_fitness
         return self._best_solution, self._best_fitness
 
 
@@ -412,7 +414,7 @@ class Population:
 
 if __name__ == '__main__':
     #optimize function: VaR, VaRp, markovitz, markovitz_sqrt, sharp_coef, sharp_coef_sqrt
-    config = {'optimize_function': 'sharp_coef_sqrt',
+    config = {'optimize_function': 'VaR',
                 'population_size': 500, 'offspring_ratio': 0.5,
                 'crossover_probability': 1.0,
                 'selection_method': {'type': 'roulette_wheel', 'k': 25},
