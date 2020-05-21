@@ -9,22 +9,17 @@ np.random.seed(0)
 
 
 class Particle(Chromosome):
-    def __init__(self, weight):
+    def __init__(self, weight, velocity):
         super().__init__(weight)
         self._best_position = self._weight
+        self._velocity = velocity
 
-    @staticmethod
-    def calculate_sd_e(df, z_score, _lambda, optimize, inertia_factor, self_conf_factor, swarm_conf_factor):
-        df.drop(['DTYYYYMMDD'], axis=1, inplace=True)
-        Particle._method = optimize
-        Particle._z_score = z_score
-        Particle._lambda = _lambda
-        Particle._pct_change = df.pct_change()
-        Particle._annual_returns = Particle._pct_change.mean()
-        Particle._annual_cov_matrix = Particle._pct_change.cov()
-        Particle._inertia_factor = inertia_factor
-        Particle._self_conf_factor = self_conf_factor
-        Particle._swarm_conf_factor = swarm_conf_factor
+    @classmethod
+    def calculate_sd_e(cls, df, z_score, _lambda, optimize, inertia_factor, self_conf_factor, swarm_conf_factor):
+        super().calculate_sd_e(df, z_score, _lambda, optimize)
+        cls._inertia_factor = inertia_factor
+        cls._self_conf_factor = self_conf_factor
+        cls._swarm_conf_factor = swarm_conf_factor
 
 
 class Swarm(Population):
@@ -35,8 +30,11 @@ class Swarm(Population):
         if self.verbose > 0:
             print('\nIteration {}'.format(len(self._all_best_fitness)))
         generation = self._generations[-1]
-        np.random.shuffle(generation)
         generation_fitness = np.asarray([chromo._fitness for chromo in generation])
+        print(generation[0]._fitness)
+        print(generation[0]._best_position)
+        print(generation[0]._velocity)
+        exit()
 
         # selection phase
         selection_switcher = {
@@ -86,12 +84,6 @@ class Swarm(Population):
             print('\tMUTATION best fitness: {}'.format(best_fitness))
 
         # replace worst chromosomes
-        sorted_indexes = np.argsort(generation_fitness)
-        worst_indexes = sorted_indexes[-self._chromosomes_replace:]
-        worst_indexes.sort()
-        worst_indexes = np.flip(worst_indexes)
-        for idx in worst_indexes:
-            generation.pop(idx)
         new_generation = generation + new_children
         new_generation_fitness = np.asarray([chromo._fitness for chromo in new_generation])
         self._generations.append(new_generation)
@@ -160,8 +152,8 @@ class Swarm(Population):
         return self._best_solution, self._best_fitness
 
 
-    @staticmethod
-    def population_initialization(df, z_score: float = 1.0, _lambda=0.4, optimize='VaR',
+    @classmethod
+    def population_initialization(cls, df, z_score: float = 1.0, _lambda=0.4, optimize='VaR',
                                     population_size=100, genes_number: int = None,
                                     inertia_factor=0.5, self_conf_factor=1.5, swarm_conf_factor=1.5):
         Particle.calculate_sd_e(df, z_score, _lambda, optimize,
@@ -169,7 +161,12 @@ class Swarm(Population):
                                 self_conf_factor=self_conf_factor,
                                 swarm_conf_factor=swarm_conf_factor)
         new_population = np.random.dirichlet(np.ones(genes_number), size=population_size)
-        return Swarm([Particle(chromo) for chromo in new_population])
+        velocity = np.random.uniform(-1, 1, size=(population_size, genes_number))
+        normal = np.ones(genes_number)
+        normal_norm_square = np.sum(normal ** 2)
+        proj_on_normal = np.dot(np.dot(velocity, normal).reshape((-1,1)) / normal_norm_square, normal.reshape((1,-1)))
+        proj_on_plane = velocity - proj_on_normal
+        return cls([Particle(ptc, veloc) for (ptc, veloc) in zip(new_population, proj_on_plane.tolist())])
 
 
 if __name__ == '__main__':
@@ -195,9 +192,9 @@ if __name__ == '__main__':
                                                 optimize=config['optimize_function'],
                                                 population_size=config['population_size'],
                                                 genes_number=genes_number,
-                                                inertia_factor=0.5,
-                                                self_conf_factor=1.5,
-                                                swarm_conf_factor=1.5)
+                                                inertia_factor=config['inertia_factor'],
+                                                self_conf_factor=config['self_conf_factor'],
+                                                swarm_conf_factor=config['swarm_conf_factor'],)
         solution, fitness = swarm.generate_populations(config=config, verbose=1)
 
         cs_type = 'rd' if config['crossover_method']['type'] == 'uniform' else '2p'

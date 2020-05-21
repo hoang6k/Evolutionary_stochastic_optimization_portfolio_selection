@@ -7,45 +7,38 @@ np.random.seed(0)
 
 
 class Chromosome:
-    _pct_change = None
-    _z_score = None
-    _lambda = None
-    _method = None
-    _annual_returns = None
-    _annual_cov_matrix = None
-
     def __init__(self, weight):
         if weight is None:
             weight = []
         self._weight = weight
-        if Chromosome._method == 'VaR':
+        if self._method == 'VaR':
             self._fitness = self.calculate_VaR_fitness()
-        elif Chromosome._method == 'VaRp':
+        elif self._method == 'VaRp':
             self._fitness = self.calculate_VaRp_fitness()
-        elif Chromosome._method == 'markovitz':
+        elif self._method == 'markovitz':
             self._fitness = self.calculate_markovitz_fitness()
-        elif Chromosome._method == 'markovitz_sqrt':
+        elif self._method == 'markovitz_sqrt':
             self._fitness = self.calculate_markovitz_fitness_sqrt()
-        elif Chromosome._method == 'sharp_coef':
+        elif self._method == 'sharp_coef':
             self._fitness = self.calculate_sharp_coef_fitness()
-        elif Chromosome._method == 'sharp_coef_sqrt':
+        elif self._method == 'sharp_coef_sqrt':
             self._fitness = self.calculate_sharp_coef_fitness_sqrt()
         else:
             exit()
 
     def calculate_VaR_fitness(self):
-        value_ptf = Chromosome._pct_change * self._weight * 1e6
+        value_ptf = self._pct_change * self._weight * 1e6
         value_ptf['Value of Portfolio'] = value_ptf.sum(axis=1)
         ptf_percentage = value_ptf['Value of Portfolio']
         ptf_percentage = ptf_percentage.sort_values(axis=0, ascending=True)
-        _VaR =  np.percentile(ptf_percentage, Chromosome._z_score)
+        _VaR =  np.percentile(ptf_percentage, self._z_score)
         self._fitness = -_VaR
         return self._fitness
 
     def calculate_VaRp_fitness(self):
-        port_variance = np.dot(self._weight, np.dot(Chromosome._annual_cov_matrix, self._weight.T))
+        port_variance = np.dot(self._weight, np.dot(self._annual_cov_matrix, self._weight.T))
         port_standard_devitation = np.sqrt(port_variance)
-        port_returns_expected = np.sum(self._weight * Chromosome._annual_returns)
+        port_returns_expected = np.sum(self._weight * self._annual_returns)
         self._fitness = (- port_returns_expected + 2.33 * port_standard_devitation) * 1e6
         if self._fitness < 0:
             print('unexpected fitness < 0')
@@ -53,44 +46,44 @@ class Chromosome:
         return self._fitness
 
     def calculate_markovitz_fitness(self):
-        _lambda = Chromosome._lambda
-        port_variance = np.dot(self._weight, np.dot(Chromosome._annual_cov_matrix, self._weight.T))
+        _lambda = self._lambda
+        port_variance = np.dot(self._weight, np.dot(self._annual_cov_matrix, self._weight.T))
         port_standard_devitation = np.sqrt(port_variance)
-        port_returns_expected = np.sum(self._weight * Chromosome._annual_returns)
+        port_returns_expected = np.sum(self._weight * self._annual_returns)
         self._fitness = (_lambda * port_standard_devitation - (1 - _lambda) * port_returns_expected) * 1e6
         return self._fitness
 
     def calculate_markovitz_fitness_sqrt(self):
-        _lambda = Chromosome._lambda
-        port_variance = np.dot(self._weight, np.dot(Chromosome._annual_cov_matrix, self._weight.T))
+        _lambda = self._lambda
+        port_variance = np.dot(self._weight, np.dot(self._annual_cov_matrix, self._weight.T))
         port_standard_devitation = np.sqrt(port_variance)
-        port_returns_expected = np.sum(self._weight * Chromosome._annual_returns)
+        port_returns_expected = np.sum(self._weight * self._annual_returns)
         self._fitness = (_lambda * np.sqrt(port_standard_devitation) - (1 - _lambda) * port_returns_expected) * 1e6
         return self._fitness
 
     def calculate_sharp_coef_fitness(self):
-        port_variance = np.dot(self._weight, np.dot(Chromosome._annual_cov_matrix, self._weight.T))
+        port_variance = np.dot(self._weight, np.dot(self._annual_cov_matrix, self._weight.T))
         port_standard_devitation = np.sqrt(port_variance)
-        port_returns_expected = np.sum(self._weight * Chromosome._annual_returns)
+        port_returns_expected = np.sum(self._weight * self._annual_returns)
         self._fitness = - port_returns_expected / port_standard_devitation * 1e6
         return self._fitness
 
     def calculate_sharp_coef_fitness_sqrt(self):
-        port_variance = np.dot(self._weight, np.dot(Chromosome._annual_cov_matrix, self._weight.T))
+        port_variance = np.dot(self._weight, np.dot(self._annual_cov_matrix, self._weight.T))
         port_standard_devitation = np.sqrt(port_variance)
-        port_returns_expected = np.sum(self._weight * Chromosome._annual_returns)
+        port_returns_expected = np.sum(self._weight * self._annual_returns)
         self._fitness = - port_returns_expected / np.sqrt(port_standard_devitation) * 1e6
         return self._fitness
 
-    @staticmethod
-    def calculate_sd_e(df, z_score, _lambda, optimize):
+    @classmethod
+    def calculate_sd_e(cls, df, z_score, _lambda, optimize):
         df.drop(['DTYYYYMMDD'], axis=1, inplace=True)
-        Chromosome._method = optimize
-        Chromosome._z_score = z_score
-        Chromosome._lambda = _lambda
-        Chromosome._pct_change = df.pct_change()
-        Chromosome._annual_returns = Chromosome._pct_change.mean()
-        Chromosome._annual_cov_matrix = Chromosome._pct_change.cov()
+        cls._method = optimize
+        cls._z_score = z_score
+        cls._lambda = _lambda
+        cls._pct_change = df.pct_change()
+        cls._annual_returns = cls._pct_change.mean()
+        cls._annual_cov_matrix = cls._pct_change.cov()
 
 
 class Population:
@@ -404,12 +397,12 @@ class Population:
         return self._best_solution, self._best_fitness
 
 
-    @staticmethod
-    def population_initialization(df, z_score: float = 1.0, _lambda=0.4, optimize='VaR',
+    @classmethod
+    def population_initialization(cls, df, z_score: float = 1.0, _lambda=0.4, optimize='VaR',
                                     population_size=100, genes_number: int = None):
         Chromosome.calculate_sd_e(df, z_score, _lambda, optimize)
         new_population = np.random.dirichlet(np.ones(genes_number), size=population_size)
-        return Population([Chromosome(chromo) for chromo in new_population])
+        return cls([Chromosome(chromo) for chromo in new_population])
 
 
 if __name__ == '__main__':
