@@ -5,8 +5,6 @@ from time import time
 
 from genetic import Chromosome, Population
 
-np.random.seed(0)
-
 
 class Particle(Chromosome):
     def __init__(self, weight, velocity):
@@ -26,72 +24,41 @@ class Swarm(Population):
     def __init__(self, first_population: list = None):
         super().__init__(first_population=first_population)
     
+    def update_velocity_and_position(self, particle):
+        veloc = particle._velocity
+        pos = particle._weight
+        rp, rg = np.random.uniform(size=2)
+        new_veloc = Particle._inertia_factor * veloc + \
+                    Particle._self_conf_factor * rp * (particle._best_position - pos) + \
+                    Particle._swarm_conf_factor * rg * (self._best_solution._weight - pos)
+        new_pos = pos + new_veloc
+        particle._weight = new_pos
+        particle._velocity = new_veloc
+        if (new_pos > 0).all() and (new_pos <= 0.4).all():
+            fitness = particle._fitness
+            new_fitness = particle.calculate_fitness()
+            if new_fitness < fitness:
+                particle._best_position = new_pos
+
     def generate_next_population(self):
         if self.verbose > 0:
-            print('\nIteration {}'.format(len(self._all_best_fitness)))
+            print('\nIteration {} - Record {}'.format(len(self._all_best_fitness), self._best_solution.calculate_fitness()))
         generation = self._generations[-1]
-        generation_fitness = np.asarray([chromo._fitness for chromo in generation])
-        print(generation[0]._fitness)
-        print(generation[0]._best_position)
-        print(generation[0]._velocity)
-        exit()
 
-        # selection phase
-        selection_switcher = {
-            'roulette_wheel': self.roulette_wheel_selection,
-            'tournament': self.tournament_selection,
-            'rank': self.rank_selection,
-            'boltzmann': self.boltzmann_selection,
-            'elitism': self.elitism_selection
-        }
-        parents = selection_switcher.get(
-                    self._selection_method['type'], 
-                    lambda: 'Invalid selection method')(
-                        generation,
-                        self._selection_method['k']
-                    )
+        # update velocity, position and best position
+        for particle in generation:
+            self.update_velocity_and_position(particle)
 
-        # cross-over phase
-        if self.verbose > 1:
-            print('----CROSS-OVER PHASE')
-            start_time = time()
-        crossover_switcher = {
-            '1point': self.crossover_1point,
-            '2points': self.crossover_2points,
-            'uniform': self.crossover_uniform
-        }
-        children = crossover_switcher.get(
-                    self._crossover_method['type'],
-                    lambda: 'Invalid crossover method')(
-                        parents,
-                        self._crossover_method['parameters']
-                    )
-        best_fitness = np.min([chromo._fitness for chromo in children])
-        if self.verbose > 0:
-            if self.verbose > 1:
-                print('Time of cross-over: {} seconds'.format(time() - start_time))
-            print('\tCROSS-OVER best fitness: {}'.format(best_fitness))
+        # update best swarm position
+        new_generation_fitness = np.asarray([ptc._fitness for ptc in generation])
+        best_fitness = np.min(new_generation_fitness)
+        if best_fitness < self._best_solution._fitness:
+            self._best_solution = generation[np.argmin(new_generation_fitness)]
 
-        # mutation phase
-        if self.verbose > 1:
-            print('****MUTATION PHASE')
-            start_time = time()
-        new_children = self.mutation(children)
-        best_fitness = np.min(np.asarray([chromo._fitness for chromo in new_children]))
-        if self.verbose > 0:
-            if self.verbose > 1:
-                print('Time of mutation: {} seconds'.format(time() - start_time))
-            print('\tMUTATION best fitness: {}'.format(best_fitness))
-
-        # replace worst chromosomes
-        new_generation = generation + new_children
-        new_generation_fitness = np.asarray([chromo._fitness for chromo in new_generation])
-        self._generations.append(new_generation)
+        # update
+        self._generations.append(generation)
         self._all_best_fitness.append(np.min(new_generation_fitness))
-        self._generations_solution.append(new_generation[np.argmin(new_generation_fitness)])
-        # if self._all_best_fitness[-1] < self._best_fitness:
-        #     self._best_solution = self._generations_solution[-1]
-        #     self._best_fitness = self._all_best_fitness[-1]
+        self._generations_solution.append(generation[np.argmin(new_generation_fitness)])
         return self._all_best_fitness[-1]
 
     def print(self):
@@ -120,7 +87,7 @@ class Swarm(Population):
         self.verbose = verbose
         self.print()
 
-        print('Initial fitness: {}'.format(self._best_fitness))        
+        print('Initial fitness: {}'.format(self._best_fitness))
         depth = 0
         for epoch in range(self._generations_number):
             new_best_fitness = self.generate_next_population()
@@ -134,7 +101,6 @@ class Swarm(Population):
                         print('**********STOP CRITERION DEPTH REACHED**********')
                     break
             elif self._best_fitness - new_best_fitness < 1e-5:
-                self._best_solution = self._generations_solution[-1]
                 self._best_fitness = self._all_best_fitness[-1]
                 depth += 1
                 if self.verbose > 0:
@@ -144,7 +110,6 @@ class Swarm(Population):
                         print('**********STOP CRITERION DEPTH REACHED**********')
                     break
             else:
-                self._best_solution = self._generations_solution[-1]
                 self._best_fitness = self._all_best_fitness[-1]
                 depth = 0
                 if self.verbose > 0:
@@ -166,10 +131,12 @@ class Swarm(Population):
         normal_norm_square = np.sum(normal ** 2)
         proj_on_normal = np.dot(np.dot(velocity, normal).reshape((-1,1)) / normal_norm_square, normal.reshape((1,-1)))
         proj_on_plane = velocity - proj_on_normal
-        return cls([Particle(ptc, veloc) for (ptc, veloc) in zip(new_population, proj_on_plane.tolist())])
+        return cls([Particle(ptc, np.asarray(veloc)) for (ptc, veloc) in zip(new_population, proj_on_plane.tolist())])
 
 
 if __name__ == '__main__':
+    np.random.seed(0)
+    
     #optimize function: VaR, VaRp, markovitz, markovitz_sqrt, sharp_coef, sharp_coef_sqrt
     config = {'optimize_function': 'VaR',
                 'population_size': 500, 'offspring_ratio': 0.5,
@@ -207,6 +174,6 @@ if __name__ == '__main__':
         data = np.reshape(np.concatenate([fitness, solution]), (1,-1))
         result = pd.DataFrame(data, columns=[config['optimize_function']] + list(df))
         result.to_csv('result/result_' + path[path.rfind('/') + 1:-4] + '_' + config['optimize_function'] + '_' +
-                        cs_type + str(config['population_size']) + '.csv', index=False)
+                        'pso.csv', index=False)
     else:
         pass

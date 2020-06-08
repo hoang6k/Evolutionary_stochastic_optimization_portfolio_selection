@@ -3,26 +3,27 @@ import pandas as pd
 import copy
 from time import time
 
-np.random.seed(0)
-
 
 class Chromosome:
     def __init__(self, weight):
         if weight is None:
             weight = []
         self._weight = weight
+        self.calculate_fitness()
+
+    def calculate_fitness(self):
         if self._method == 'VaR':
-            self._fitness = self.calculate_VaR_fitness()
+            return self.calculate_VaR_fitness()
         elif self._method == 'VaRp':
-            self._fitness = self.calculate_VaRp_fitness()
+            return self.calculate_VaRp_fitness()
         elif self._method == 'markovitz':
-            self._fitness = self.calculate_markovitz_fitness()
+            return self.calculate_markovitz_fitness()
         elif self._method == 'markovitz_sqrt':
-            self._fitness = self.calculate_markovitz_fitness_sqrt()
+            return self.calculate_markovitz_fitness_sqrt()
         elif self._method == 'sharp_coef':
-            self._fitness = self.calculate_sharp_coef_fitness()
+            return self.calculate_sharp_coef_fitness()
         elif self._method == 'sharp_coef_sqrt':
-            self._fitness = self.calculate_sharp_coef_fitness_sqrt()
+            return self.calculate_sharp_coef_fitness_sqrt()
         else:
             exit()
 
@@ -269,7 +270,7 @@ class Population:
 
     def generate_next_population(self):
         if self.verbose > 0:
-            print('\nIteration {}'.format(len(self._all_best_fitness)))
+            print('\nIteration {} - Record {}'.format(len(self._all_best_fitness), self._best_solution._fitness))
         generation = self._generations[-1]
         np.random.shuffle(generation)
         generation_fitness = np.asarray([chromo._fitness for chromo in generation])
@@ -406,6 +407,8 @@ class Population:
 
 
 if __name__ == '__main__':
+    np.random.seed(0)
+    
     #optimize function: VaR, VaRp, markovitz, markovitz_sqrt, sharp_coef, sharp_coef_sqrt
     config = {'optimize_function': 'VaR',
                 'population_size': 500, 'offspring_ratio': 0.5,
