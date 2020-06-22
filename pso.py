@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import copy
 from time import time
+import matplotlib.pyplot as plt
 
 from genetic import Chromosome, Population
 
@@ -42,7 +43,8 @@ class Swarm(Population):
 
     def generate_next_population(self):
         if self.verbose > 0:
-            print('\nIteration {} - Record {}'.format(len(self._all_best_fitness), self._best_solution.calculate_fitness()))
+            print('\nIteration {}'.format(len(self._all_best_fitness)))
+            # print('\nIteration {} - Record {}'.format(len(self._all_best_fitness), self._best_solution.calculate_fitness()))
         generation = self._generations[-1]
 
         # update velocity, position and best position
@@ -114,7 +116,7 @@ class Swarm(Population):
                 depth = 0
                 if self.verbose > 0:
                     print('\tFitness improved')
-        return self._best_solution, self._best_fitness
+        return self._best_solution, self._best_fitness, self._all_best_fitness
 
 
     @classmethod
@@ -162,7 +164,15 @@ if __name__ == '__main__':
                                                 inertia_factor=config['inertia_factor'],
                                                 self_conf_factor=config['self_conf_factor'],
                                                 swarm_conf_factor=config['swarm_conf_factor'],)
-        solution, fitness = swarm.generate_populations(config=config, verbose=1)
+        solution, fitness, all_best_fitness = swarm.generate_populations(config=config, verbose=1)
+
+        # draw fitness improving line
+        epochs = np.arange(len(all_best_fitness))
+        plt.plot(epochs, all_best_fitness)
+        plt.xlabel('Epoch')
+        plt.ylabel('Best fitness')
+        plt.title('Partical swarm optimization')
+        plt.show()
 
         cs_type = 'rd' if config['crossover_method']['type'] == 'uniform' else '2p'
         print(solution._weight)

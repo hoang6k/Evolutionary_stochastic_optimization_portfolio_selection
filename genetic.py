@@ -2,6 +2,7 @@ import numpy as np
 import pandas as pd
 import copy
 from time import time
+import matplotlib.pyplot as plt
 
 
 class Chromosome:
@@ -270,7 +271,8 @@ class Population:
 
     def generate_next_population(self):
         if self.verbose > 0:
-            print('\nIteration {} - Record {}'.format(len(self._all_best_fitness), self._best_solution._fitness))
+            print('\nIteration {}'.format(len(self._all_best_fitness)))
+            # print('\nIteration {} - Record {}'.format(len(self._all_best_fitness), self._best_solution._fitness))
         generation = self._generations[-1]
         np.random.shuffle(generation)
         generation_fitness = np.asarray([chromo._fitness for chromo in generation])
@@ -395,7 +397,7 @@ class Population:
                 depth = 0
                 if self.verbose > 0:
                     print('\tFitness improved')
-        return self._best_solution, self._best_fitness
+        return self._best_solution, self._best_fitness, self._all_best_fitness
 
 
     @classmethod
@@ -430,7 +432,15 @@ if __name__ == '__main__':
                                                             optimize=config['optimize_function'],
                                                             population_size=config['population_size'],
                                                             genes_number=genes_number)
-        solution, fitness = population.generate_populations(config=config, verbose=1)
+        solution, fitness, all_best_fitness = population.generate_populations(config=config, verbose=1)
+
+        # draw fitness improving line
+        epochs = np.arange(len(all_best_fitness))
+        plt.plot(epochs, all_best_fitness)
+        plt.xlabel('Epoch')
+        plt.ylabel('Best fitness')
+        plt.title('Genetic algorithm')
+        plt.show()
 
         cs_type = 'rd' if config['crossover_method']['type'] == 'random' else '2p'
         print(solution._weight)
